@@ -15,6 +15,43 @@ public class Task {
     String location;
     String timeComplete;
     String dayComplete;
+    boolean isImportant;
+    boolean isShareTask;
+
+    public boolean isImportant() {
+        return isImportant;
+    }
+
+    public void setImportant(boolean important) {
+        isImportant = important;
+    }
+
+    public boolean isShareTask() {
+        return isShareTask;
+    }
+
+    public void setShareTask(boolean shareTask) {
+        isShareTask = shareTask;
+    }
+
+    public String getGroupTaskName() {
+        return groupTaskName;
+    }
+
+    public void setGroupTaskName(String groupTaskName) {
+        this.groupTaskName = groupTaskName;
+    }
+
+    public String getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
+
+    String groupTaskName;
+    String taskID;
 
     public String getTimeComplete() {
         return timeComplete;

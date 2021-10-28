@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDo">
         <activity
+            android:name=".TimeTableActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserInfo"
             android:exported="false" />
         <activity

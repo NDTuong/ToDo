@@ -16,7 +16,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/menuTimetable"
-                android:padding="10dp">
+                android:padding="10dp"
+                tools:ignore="UsingOnClickInXml">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -27,6 +28,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tvTimeTableMenu"
                     android:text="@string/menu_timetable" />
             </LinearLayout>
 
@@ -47,6 +49,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tvTaskMenu"
                     android:text="@string/menu_task" />
             </LinearLayout>
 
@@ -67,6 +70,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tvShareTaskMenu"
                     android:text="@string/menu_share_task" />
             </LinearLayout>
 
@@ -87,6 +91,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tvImportantTaskMenu"
                     android:text="@string/menu_important_task" />
             </LinearLayout>
 
@@ -107,6 +112,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/tvOtherMenu"
                 android:text="@string/menu_other" />
         </LinearLayout>
 
@@ -136,6 +142,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/tvGroupTask"
                 android:text="@string/menu_group_task"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

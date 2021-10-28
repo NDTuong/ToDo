@@ -1,5 +1,6 @@
 package com.example.todo;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.todo.Adapter.GroupTaskAdapter;
@@ -21,6 +23,9 @@ import java.util.Map;
 
 public class MenuFragment extends Fragment {
     View view;
+
+    private TextView tvTimeTable, tvTask, tvShareTask, tvImportantTask, tvGroupTask;
+
     List<String> groupTask;
     List<Task> listTask;
     Map<String, List<Task>> taskCollection;
@@ -32,6 +37,16 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_menu, container, false);
+
+        tvTimeTable = (TextView) view.findViewById(R.id.tvTimeTableMenu);
+        tvTimeTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TimeTableActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         createGroupList();
         createCollection();
@@ -59,6 +74,13 @@ public class MenuFragment extends Fragment {
 
         return view;
     }
+
+
+
+
+
+
+
 
     public void createCollection(){
         taskCollection = new HashMap<String, List<Task>>();
