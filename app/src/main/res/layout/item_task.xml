@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="10dp">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvTaskName"
+            android:padding="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_name"/>
+        <TextView
+            android:id="@+id/tvProcess"
+            android:padding="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tvTaskName"
+            android:text="@string/task_process"
+            android:layout_marginLeft="5dp"
+            />
+        <ImageView
+            android:id="@+id/iconCalendar"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:padding="3dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/ic_baseline_calendar_today_24"
+            android:layout_below="@id/tvTaskName"/>
+
+        <TextView
+            android:id="@+id/tvEndDay"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/task_end_day"
+            android:padding="3dp"
+            android:layout_below="@id/tvTaskName"
+            android:layout_toEndOf="@id/iconCalendar"/>
+
+        <TextView
+            android:id="@+id/tvDeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:layout_toEndOf="@id/tvEndDay"
+            android:layout_below="@id/tvTaskName"
+            android:text="@string/task_deadline" />
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

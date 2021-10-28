@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_sign_up.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_user_info.xml" value="0.1859375" />
+        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/fragment_menu.xml" value="0.2" />
+        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/group_task_item.xml" value="0.2" />
+        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/item_task.xml" value="0.25" />
+        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21614583333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
