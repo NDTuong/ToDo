@@ -17,6 +17,15 @@ public class Task {
     String dayComplete;
     boolean isImportant;
     boolean isShareTask;
+    DayOfWeek dayOfWeek;
+
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
 
     public boolean isImportant() {
         return isImportant;
