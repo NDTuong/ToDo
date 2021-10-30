@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TimeTableActivity">
@@ -12,21 +13,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
+        android:contentDescription="@string/todo"
         android:src="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/iconMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp"
         android:layout_marginTop="5dp"
+        android:contentDescription="@string/todo"
+        android:padding="5dp"
         android:src="@drawable/ic_baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -42,13 +43,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="420dp"
             android:orientation="vertical">
 
             <TableLayout
@@ -58,105 +60,119 @@
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:layout_marginStart="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
                         android:text="@string/monday"
+                        android:gravity="center_vertical"
                         android:textSize="16sp" />
                 </TableRow>
-
+<!--                <com.google.android.material.divider.MaterialDivider-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:layout_height="1dp"/>-->
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:layout_marginStart="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
                         android:text="@string/tuesday"
                         android:textSize="16sp" />
                 </TableRow>
-
+<!--                <com.google.android.material.divider.MaterialDivider-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"/>-->
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:layout_marginStart="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
                         android:text="@string/wednesday"
                         android:textSize="16sp" />
                 </TableRow>
-
+<!--                <com.google.android.material.divider.MaterialDivider-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"/>-->
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:layout_marginStart="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
                         android:text="@string/thursday"
                         android:textSize="16sp" />
                 </TableRow>
-
+<!--                <com.google.android.material.divider.MaterialDivider-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"/>-->
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:layout_marginStart="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
                         android:text="@string/friday"
                         android:textSize="16sp" />
                 </TableRow>
-
+<!--                <com.google.android.material.divider.MaterialDivider-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:layout_height="1dp"/>-->
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:layout_marginStart="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
                         android:text="@string/saturday"
                         android:textSize="16sp" />
                 </TableRow>
-
+<!--                <com.google.android.material.divider.MaterialDivider-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:layout_height="1dp"/>-->
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:layout_marginStart="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
                         android:text="@string/sunday"
                         android:textSize="16sp" />
                 </TableRow>
             </TableLayout>
         </LinearLayout>
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
+
+        <HorizontalScrollView
+            android:id="@+id/scrollViewTimeTable"
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/linearLayoutTimeTable"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -164,62 +180,64 @@
                     <TableRow
                         android:id="@+id/rowMonday"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="58dp"
                         android:layout_marginStart="5dp"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp">
-
-                    </TableRow>
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"></TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="58dp"
+                        android:id="@+id/rowTuesday"
                         android:layout_marginStart="5dp"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp">
-                    </TableRow>
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"></TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="58dp"
+                        android:id="@+id/rowWednesday"
                         android:layout_marginStart="5dp"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp">/>
-                    </TableRow>
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"
+                    ></TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="58dp"
+                        android:id="@+id/rowThursday"
                         android:layout_marginStart="5dp"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp">
-                    </TableRow>
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"></TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="58dp"
+                        android:id="@+id/rowFriday"
                         android:layout_marginStart="5dp"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp">
-                    </TableRow>
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"></TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="58dp"
+                        android:id="@+id/rowSaturday"
                         android:layout_marginStart="5dp"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp">
-                    </TableRow>
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"></TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="58dp"
+                        android:id="@+id/rowSunday"
                         android:layout_marginStart="5dp"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp">
-                    </TableRow>
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"></TableRow>
+
                 </TableLayout>
-            </HorizontalScrollView>
+            </LinearLayout>
+        </HorizontalScrollView>
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -229,20 +247,19 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:clickable="true"
+        android:contentDescription="@string/todo"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_add_24"
-        android:focusable="true"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/ic_baseline_add_24" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/todo">
-    </FrameLayout>
+        app:layout_constraintStart_toStartOf="parent"></FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

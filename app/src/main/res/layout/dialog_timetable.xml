@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-    tools:context=".Fragment.EditTimeTableFragment">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldSubjects"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/subject"
             app:boxBackgroundColor="#fff">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editSubjects"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/subjects"
-                android:lines="1"/>
+                android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldClassromm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/classroom"
+            android:hint="@string/subject"
             app:boxBackgroundColor="#fff">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editClassroom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/classroom"
-                android:lines="1"/>
+                android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,65 +42,69 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
-            android:orientation="horizontal"
-           >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:text="@string/day_of_week"
-                android:textSize="16sp"
-                android:layout_marginStart="15dp"/>
+                android:textSize="16sp" />
+
             <Spinner
-                android:id="@+id/spinnerDOF"
+                android:id="@+id/editSpinnerDOF"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                 />
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:text="@string/duration"
-                android:textSize="16sp"
-                android:layout_marginStart="15dp"/>
+                android:textSize="16sp" />
+
             <TextView
+                android:id="@+id/tvEditTimeStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvTimeStart"
+                android:layout_marginStart="15dp"
                 android:text="9:30"
-                android:textSize="16sp"
-                android:layout_marginStart="15dp"/>
+                android:textSize="16sp" />
+
             <ImageView
+                android:id="@+id/ivEditTimeStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ivTimeStart"
                 android:src="@drawable/ic_baseline_arrow_drop_down_24" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:text="đến"
-                android:textSize="16sp"
-                android:layout_marginStart="15dp"/>
+                android:textSize="16sp" />
+
             <TextView
+                android:id="@+id/tvEditTimeEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvTimeEnd"
+                android:layout_marginStart="15dp"
                 android:text="9:30"
-                android:textSize="16sp"
-                android:layout_marginStart="15dp"/>
+                android:textSize="16sp" />
+
             <ImageView
+                android:id="@+id/ivEditTimeEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ivTimeEnd"
                 android:src="@drawable/ic_baseline_arrow_drop_down_24" />
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -111,14 +113,13 @@
             android:background="#fff"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
+
             <Button
+                android:id="@+id/btnSaveTimeTable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnAddTimeTable"
-                android:text="@string/btn_add_timetable"
-                />
+                android:text="@string/btn_add_timetable" />
 
         </LinearLayout>
-    </LinearLayout>
-
-</FrameLayout>
+</LinearLayout>
+</LinearLayout>

@@ -1,6 +1,5 @@
 package com.example.todo.Model;
 
-import android.content.Context;
 
 import com.example.todo.R;
 
@@ -8,48 +7,48 @@ public enum DayOfWeek {
     MON {
         // overriding toString() for SMALL
         public String toString() {
-            return "Thứ hai";
+            return String.valueOf(R.string.monday);
         }}
     ,TUE {
 
         // overriding toString() for SMALL
         public String toString() {
-            return "Thứ ba";
+            return String.valueOf(R.string.tuesday);
         }
     }
     ,WED{
 
         // overriding toString() for SMALL
         public String toString() {
-            return "Thứ tư";
+            return String.valueOf(R.string.wednesday);
         }
     }
     ,THU{
 
         // overriding toString() for SMALL
         public String toString() {
-            return "Thứ năm";
+            return String.valueOf(R.string.thursday);
         }
     }
     ,FRI{
 
         // overriding toString() for SMALL
         public String toString() {
-            return "Thứ sáu";
+            return String.valueOf(R.string.friday);
         }
     }
     ,SAT{
 
         // overriding toString() for SMALL
         public String toString() {
-            return "Thứ bảy";
+            return String.valueOf(R.string.saturday);
         }
     }
     ,SUN{
 
         // overriding toString() for SMALL
         public String toString() {
-            return "Chủ nhật";
+            return String.valueOf(R.string.sunday);
         }
     }
 }

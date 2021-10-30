@@ -30,6 +30,9 @@
     <string name="menu_important_task">Quan trọng</string>
     <string name="menu_group_task">Tạo nhóm công việc</string>
     <string name="todo">TODO</string>
+    <string name="delete">Xóa</string>
+    <string name="edit">Sửa</string>
+
 
     <string name="monday">Thứ hai</string>
     <string name="tuesday">Thứ ba</string>
@@ -46,6 +49,9 @@
     <string name="classroom">Phòng học</string>
     <string name="btn_add_timetable">Thêm</string>
     <string name="day_of_week">Thứ:</string>
+    <string name="empty_subject">Chưa nhập tên môn học!</string>
+    <string name="empty_classroom">Chưa nhập phòng học!</string>
+    <string name="btn_cancle">Đóng</string>
 
     <string-array name="spinner_choices">
         <item>Thứ 2</item>
