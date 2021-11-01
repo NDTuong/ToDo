@@ -1,4 +1,4 @@
-package com.example.todo;
+package com.example.todo.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.todo.Adapter.GroupTaskAdapter;
 import com.example.todo.Model.Task;
+import com.example.todo.R;
+import com.example.todo.TimeTableActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

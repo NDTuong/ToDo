@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuFragment">
+    tools:context=".Fragment.MenuFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
@@ -117,10 +117,10 @@
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dividerMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/dividerMenu"
-            android:layout_below="@id/menuOther"/>
+            android:layout_below="@id/menuOther" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/menuCreateGroupTask"

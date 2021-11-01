@@ -1,4 +1,4 @@
-package com.example.todo;
+package com.example.todo.Fragment;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.todo.Adapter.TaskAdapter;
 import com.example.todo.Model.Task;
+import com.example.todo.R;
 
 import java.util.ArrayList;
 import java.util.List;

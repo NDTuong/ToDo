@@ -6,11 +6,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.todo.HomeFragment;
-import com.example.todo.MenuFragment;
+import com.example.todo.Fragment.HomeFragment;
+import com.example.todo.Fragment.MenuFragment;
 
-public class FragmentAdapter extends FragmentStateAdapter {
-    public FragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+public class TabFragmentAdapter extends FragmentStateAdapter {
+    public TabFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }
 

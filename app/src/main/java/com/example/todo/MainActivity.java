@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.todo.Adapter.FragmentAdapter;
+import com.example.todo.Adapter.TabFragmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView text;
     private TabLayout tabLayout;
     private ViewPager2 pager2;
-    private FragmentAdapter fragmentAdapter;
+    private TabFragmentAdapter tabFragmentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         pager2 = (ViewPager2) findViewById(R.id.viewPager2);
 
         FragmentManager fm = getSupportFragmentManager();
-        fragmentAdapter = new FragmentAdapter(fm, getLifecycle());
-        pager2.setAdapter(fragmentAdapter);
+        tabFragmentAdapter = new TabFragmentAdapter(fm, getLifecycle());
+        pager2.setAdapter(tabFragmentAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

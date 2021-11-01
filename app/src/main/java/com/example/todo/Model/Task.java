@@ -1,22 +1,30 @@
 package com.example.todo.Model;
 
-import java.util.Date;
 import java.util.List;
 
 public class Task {
-    String taskName;
+    java.lang.String taskName;
     List<Task> subTask;
     boolean isComplete;
-    String startTime;
-    String endTime;
-    String process;
-    String startDay;
-    String endDay;
-    String location;
-    String timeComplete;
-    String dayComplete;
+    java.lang.String startTime;
+    java.lang.String endTime;
+    java.lang.String process;
+    java.lang.String startDay;
+    java.lang.String endDay;
+    java.lang.String location;
+    java.lang.String timeComplete;
+    java.lang.String dayComplete;
     boolean isImportant;
     boolean isShareTask;
+    String string;
+
+    public String getDayOfWeek() {
+        return string;
+    }
+
+    public void setDayOfWeek(String string) {
+        this.string = string;
+    }
 
     public boolean isImportant() {
         return isImportant;
@@ -34,61 +42,61 @@ public class Task {
         isShareTask = shareTask;
     }
 
-    public String getGroupTaskName() {
+    public java.lang.String getGroupTaskName() {
         return groupTaskName;
     }
 
-    public void setGroupTaskName(String groupTaskName) {
+    public void setGroupTaskName(java.lang.String groupTaskName) {
         this.groupTaskName = groupTaskName;
     }
 
-    public String getTaskID() {
+    public java.lang.String getTaskID() {
         return taskID;
     }
 
-    public void setTaskID(String taskID) {
+    public void setTaskID(java.lang.String taskID) {
         this.taskID = taskID;
     }
 
-    String groupTaskName;
-    String taskID;
+    java.lang.String groupTaskName;
+    java.lang.String taskID;
 
-    public String getTimeComplete() {
+    public java.lang.String getTimeComplete() {
         return timeComplete;
     }
 
-    public void setTimeComplete(String timeComplete) {
+    public void setTimeComplete(java.lang.String timeComplete) {
         this.timeComplete = timeComplete;
     }
 
-    public String getDayComplete() {
+    public java.lang.String getDayComplete() {
         return dayComplete;
     }
 
-    public void setDayComplete(String dayComplete) {
+    public void setDayComplete(java.lang.String dayComplete) {
         this.dayComplete = dayComplete;
     }
 
-    public String getLocation() {
+    public java.lang.String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(java.lang.String location) {
         this.location = location;
     }
 
-    public String getProcess() {
+    public java.lang.String getProcess() {
         return process;
     }
 
-    public void setProcess(String process) {
+    public void setProcess(java.lang.String process) {
         this.process = process;
     }
 
     public Task() {
     }
 
-    public Task(String taskName, List<Task> subTask, boolean isComplete, String startTime, String endTime, String process, String startDay, String endDay) {
+    public Task(java.lang.String taskName, List<Task> subTask, boolean isComplete, java.lang.String startTime, java.lang.String endTime, java.lang.String process, java.lang.String startDay, java.lang.String endDay) {
         this.taskName = taskName;
         this.subTask = subTask;
         this.isComplete = isComplete;
@@ -99,27 +107,27 @@ public class Task {
         this.endDay = endDay;
     }
 
-    public String getStartDay() {
+    public java.lang.String getStartDay() {
         return startDay;
     }
 
-    public void setStartDay(String startDay) {
+    public void setStartDay(java.lang.String startDay) {
         this.startDay = startDay;
     }
 
-    public String getEndDay() {
+    public java.lang.String getEndDay() {
         return endDay;
     }
 
-    public void setEndDay(String endDay) {
+    public void setEndDay(java.lang.String endDay) {
         this.endDay = endDay;
     }
 
-    public String getTaskName() {
+    public java.lang.String getTaskName() {
         return taskName;
     }
 
-    public void setTaskName(String taskName) {
+    public void setTaskName(java.lang.String taskName) {
         this.taskName = taskName;
     }
 
@@ -139,19 +147,19 @@ public class Task {
         isComplete = complete;
     }
 
-    public String getStartTime() {
+    public java.lang.String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(java.lang.String startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public java.lang.String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(java.lang.String endTime) {
         this.endTime = endTime;
     }
 }
