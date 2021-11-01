@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.todo.MUtils;
 import com.example.todo.Model.DayOfWeek;
 import com.example.todo.Model.TimeTable;
 import com.example.todo.R;
@@ -38,8 +39,8 @@ public class EditTimeTableFragment extends Fragment {
     Button btnAddTimeTable;
 
     Spinner spinnerDOF;
-    ArrayList<java.lang.String> arrayListDoW;
-    ArrayAdapter<java.lang.String> arrayAdapterDoW;
+    ArrayList<String> arrayListDoW;
+    ArrayAdapter<String> arrayAdapterDoW;
 
     int t1Hour, t1Minute, t2Hour, t2Minute;
     TextView tvTimeStart, tvTimeEnd;
@@ -91,42 +92,27 @@ public class EditTimeTableFragment extends Fragment {
         spinnerDOF.setAdapter(arrayAdapterDoW);
 
         tvTimeStart = view.findViewById(R.id.tvTimeStart);
-        tvTimeStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTimePicker(v, t1Hour, t1Minute, tvTimeStart);
-            }
-        });
+        tvTimeStart.setOnClickListener(v -> showTimePicker(v, t1Hour, t1Minute, tvTimeStart));
 
         tvTimeEnd = view.findViewById(R.id.tvTimeEnd);
-        tvTimeEnd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTimePicker(v, t2Hour, t2Minute, tvTimeEnd);
-            }
-        });
+        tvTimeEnd.setOnClickListener(v -> showTimePicker(v, t2Hour, t2Minute, tvTimeEnd));
 
         ivTimeStart = view.findViewById(R.id.ivTimeStart);
-        ivTimeStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTimePicker(v, t1Hour, t1Minute, tvTimeStart);
-            }
-        });
+        ivTimeStart.setOnClickListener(v -> showTimePicker(v, t1Hour, t1Minute, tvTimeStart));
 
         ivTimeEnd = view.findViewById(R.id.ivTimeEnd);
-        ivTimeEnd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTimePicker(v, t2Hour, t2Minute, tvTimeEnd);
-            }
-        });
+        ivTimeEnd.setOnClickListener(v -> showTimePicker(v, t2Hour, t2Minute, tvTimeEnd));
 
         btnAddTimeTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String subject = editTextSubject.getText().toString().trim();
                 String classroom = editTextClassroom.getText().toString().trim();
+                String day = spinnerDOF.getSelectedItem().toString();
+                System.out.println(day);
+                String startTime = tvTimeStart.getText().toString();
+                String endTime = tvTimeEnd.getText().toString();
+                String duration = startTime + " - " + endTime;
 
                 if (TextUtils.isEmpty(subject)) {
                     Toast.makeText(view.getContext(), R.string.empty_subject, Toast.LENGTH_SHORT).show();
@@ -136,14 +122,21 @@ public class EditTimeTableFragment extends Fragment {
                     Toast.makeText(view.getContext(), R.string.empty_classroom, Toast.LENGTH_SHORT).show();
                     return;
                 }
+                int t1 = Integer.parseInt(startTime.split(":")[0]);
+                int t2 = Integer.parseInt(endTime.split(":")[0]);
+                int m1 = Integer.parseInt(startTime.split(":")[1]);
+                int m2 = Integer.parseInt(endTime.split(":")[1]);
+                if (t1 > t2){
+                    Toast.makeText(view.getContext(), R.string.duration_error, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (t1 == t2 && m1 > m2){
+                    Toast.makeText(view.getContext(), R.string.duration_error, Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                String day = spinnerDOF.getSelectedItem().toString();
-                System.out.println(day);
-                String startTime = tvTimeStart.getText().toString();
-                String endTime = tvTimeEnd.getText().toString();
-                String duration = startTime + " - " + endTime;
-                TimeTable newTimeTable = new TimeTable(subject, classroom, convert2DOF(day), duration);
                 String idTimeTable = mDatabase.push().getKey();
+                TimeTable newTimeTable = new TimeTable(subject, classroom, convert2DOF(day), duration, idTimeTable);
                 assert idTimeTable != null;
                 mDatabase.child("time_table").child(UID).child(idTimeTable).setValue(newTimeTable);
                 editTextSubject.setText("");

@@ -7,15 +7,25 @@ public class TimeTable {
     String location;
     DayOfWeek day;
     String duration;
+    String key;
 
     public TimeTable() {
     }
 
-    public TimeTable(String subject, String location, DayOfWeek day, String duration) {
+    public TimeTable(String subject, String location, DayOfWeek day, String duration, String key) {
         this.subject = subject;
         this.location = location;
         this.day = day;
         this.duration = duration;
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getSubject() {
@@ -55,11 +65,11 @@ public class TimeTable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TimeTable timeTable = (TimeTable) o;
-        return Objects.equals(subject, timeTable.subject) && Objects.equals(location, timeTable.location) && day == timeTable.day && Objects.equals(duration, timeTable.duration);
+        return subject.equals(timeTable.subject) && location.equals(timeTable.location) && day == timeTable.day && duration.equals(timeTable.duration) && key.equals(timeTable.key);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subject, location, day, duration);
+        return Objects.hash(subject, location, day, duration, key);
     }
 }

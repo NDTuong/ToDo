@@ -174,16 +174,20 @@
                 android:layout_height="match_parent">
 
                 <TableLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <TableRow
                         android:id="@+id/rowMonday"
                         android:layout_width="wrap_content"
                         android:layout_height="58dp"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"></TableRow>
+                        android:layout_marginTop="1dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="58dp"/>
+                    </TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -191,7 +195,11 @@
                         android:id="@+id/rowTuesday"
                         android:layout_marginStart="5dp"
                         android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"></TableRow>
+                        android:layout_marginTop="1dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="58dp"/>
+                    </TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -199,8 +207,11 @@
                         android:id="@+id/rowWednesday"
                         android:layout_marginStart="5dp"
                         android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"
-                    ></TableRow>
+                        android:layout_marginTop="1dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="58dp"/>
+                    </TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -208,7 +219,11 @@
                         android:id="@+id/rowThursday"
                         android:layout_marginStart="5dp"
                         android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"></TableRow>
+                        android:layout_marginTop="1dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="58dp"/>
+                    </TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -216,7 +231,11 @@
                         android:id="@+id/rowFriday"
                         android:layout_marginStart="5dp"
                         android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"></TableRow>
+                        android:layout_marginTop="1dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="58dp"/>
+                    </TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -224,7 +243,11 @@
                         android:id="@+id/rowSaturday"
                         android:layout_marginStart="5dp"
                         android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"></TableRow>
+                        android:layout_marginTop="1dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="58dp"/>
+                    </TableRow>
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -232,7 +255,11 @@
                         android:id="@+id/rowSunday"
                         android:layout_marginStart="5dp"
                         android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"></TableRow>
+                        android:layout_marginTop="1dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="58dp"/>
+                    </TableRow>
 
                 </TableLayout>
             </LinearLayout>

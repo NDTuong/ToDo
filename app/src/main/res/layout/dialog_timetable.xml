@@ -113,12 +113,26 @@
             android:background="#fff"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
-
             <Button
-                android:id="@+id/btnSaveTimeTable"
+                android:id="@+id/btnCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_add_timetable" />
+                android:layout_marginRight="5dp"
+                android:text="@string/btn_cancle" />
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/save" />
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/delete" />
+
 
         </LinearLayout>
 </LinearLayout>

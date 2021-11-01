@@ -1,7 +1,10 @@
 package com.example.todo;
-import com.example.todo.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.todo.Model.DayOfWeek;
 
-public class MUtils {
+import java.util.ArrayList;
+
+public class MUtils extends AppCompatActivity {
 
 }

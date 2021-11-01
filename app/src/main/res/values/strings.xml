@@ -32,6 +32,7 @@
     <string name="todo">TODO</string>
     <string name="delete">Xóa</string>
     <string name="edit">Sửa</string>
+    <string name="save">Lưu</string>
 
 
     <string name="monday">Thứ hai</string>
@@ -52,6 +53,9 @@
     <string name="empty_subject">Chưa nhập tên môn học!</string>
     <string name="empty_classroom">Chưa nhập phòng học!</string>
     <string name="btn_cancle">Đóng</string>
+    <string name="update_success">Đã lưu thay đổi!</string>
+    <string name="update_fail">Lỗi!</string>
+    <string name="duration_error">Thời gian kết thúc nhỏ hơn thời gian bắt đầu!</string>
 
     <string-array name="spinner_choices">
         <item>Thứ 2</item>
