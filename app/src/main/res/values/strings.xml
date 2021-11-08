@@ -1,4 +1,5 @@
 <resources>
+<!-- Login - SignUp Activity-->
     <string name="app_name">ToDo</string>
     <string name="btn_login">Đăng nhập</string>
     <string name="btn_sign_up">Đăng kí</string>
@@ -15,11 +16,13 @@
     <string name="sign_up_success">Đăng kí thành công!</string>
     <string name="sign_up_fail">Đăng kí không thành công!</string>
     <string name="login_failed">Đăng nhập không thành công</string>
+
+<!-- Main activity, Home + Menu Fragment-->
     <string name="tab_home">Trang chủ</string>
     <string name="tab_menu">Tiện ích</string>
     <string name="task_name">Tên công việc</string>
-    <string name="task_deadline">1/1/1999</string>
-    <string name="task_process">(0/0)</string>
+    <string name="task_deadline_default">1/1/1999</string>
+    <string name="task_process_default">(0/0)</string>
     <string name="task_end_day">Ngày hết hạn: </string>
     <string name="menu_timetable">Thời khóa biểu</string>
     <string name="menu_task">Công việc của tôi</string>

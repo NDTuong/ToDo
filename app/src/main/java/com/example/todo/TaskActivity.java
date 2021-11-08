@@ -67,8 +67,8 @@ public class TaskActivity extends AppCompatActivity {
 
         });
         // Đóng Fragment Add Task khi click ra ngoài (nếu có thể)
-        constraintLayout = findViewById(R.id.constraintLayout);
-        constraintLayout.setOnClickListener(this::closeFragment);
+//        constraintLayout = findViewById(R.id.constraintLayout);
+//        constraintLayout.setOnClickListener(this::closeFragment);
 
         //
 

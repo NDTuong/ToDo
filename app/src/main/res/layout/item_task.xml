@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/tvTaskName"
-            android:text="@string/task_process"
+            android:text="@string/task_process_default"
             android:layout_marginLeft="5dp"
             />
         <ImageView
@@ -78,7 +78,7 @@
             android:padding="3dp"
             android:layout_toEndOf="@id/tvEndDay"
             android:layout_below="@id/tvTaskName"
-            android:text="@string/task_deadline" />
+            android:text="@string/task_deadline_default" />
 
     </RelativeLayout>
 

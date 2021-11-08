@@ -3,7 +3,7 @@ package com.example.todo.Model;
 import java.util.List;
 
 public class Task {
-    java.lang.String taskName;
+    String taskName;
     List<Task> subTask;
     boolean isComplete;
     String startTime;
