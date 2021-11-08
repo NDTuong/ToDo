@@ -1,7 +1,7 @@
 <resources>
 <!-- Login - SignUp Activity-->
     <string name="app_name">ToDo</string>
-    <string name="btn_login">Đăng nhập</string>
+    <string name="btn_login">Đănh nhập</string>
     <string name="btn_sign_up">Đăng kí</string>
     <string name="back_2_login">Quay lại đăng nhập</string>
     <string name="enter_email">Email</string>

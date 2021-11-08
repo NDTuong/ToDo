@@ -85,8 +85,9 @@ public class TimeTableActivity extends AppCompatActivity {
         fabAddTimeTable.setOnClickListener(v -> {
             fabAddTimeTable.setVisibility(View.GONE);
             loadFragment(new AddTimeTableFragment());
-
         });
+
+
 
         // Đóng fragment thêm thời khóa biểu khi click ra ngoài
         constraintLayout = findViewById(R.id.constraintLayout);

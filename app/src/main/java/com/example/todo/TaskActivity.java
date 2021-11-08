@@ -86,6 +86,8 @@ public class TaskActivity extends AppCompatActivity {
 
     private List<Task> getListTask(){
         List<Task> tasks = new ArrayList<>();
+        //lấy từ database
+
         tasks.add(new Task("Task 1",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
         tasks.add(new Task("Task 2",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
         tasks.add(new Task("Task 3",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
