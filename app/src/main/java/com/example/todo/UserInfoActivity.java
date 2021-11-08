@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class UserInfo extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class UserInfo extends AppCompatActivity {
     }
     public void clickOut(View view){
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(UserInfo.this, LoginActivity.class);
+        Intent intent = new Intent(UserInfoActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 }

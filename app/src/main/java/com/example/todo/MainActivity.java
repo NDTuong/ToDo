@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     // [END on_start_check_user]
 
     public void go2UserInfo(View view){
-        Intent intent = new Intent(MainActivity.this, UserInfo.class);
+        Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
         startActivity(intent);
     }
 

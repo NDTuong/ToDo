@@ -58,5 +58,21 @@
     <string name="duration_error">Thời gian kết thúc nhỏ hơn thời gian bắt đầu!</string>
     <string name="forgot_password">Quên mật khẩu?</string>
 
+    <!-- Range -->
+    <string name="today">Hôm nay</string>
+    <string name="tomorrow">Ngày mai</string>
+    <string name="week">Tuần này</string>
+    <string name="expired"> Đã hết hạn</string>
+    <string name="all_task">Tất cả</string>
+    <string name="completed">Đã hoàn thành</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_sub_task">Thêm tác vụ</string>
+    <string name="remind">Nhắc nhở</string>
+    <string name="deadline">Ngày đến hạn</string>
+    <string name="share_task">Chia sẻ công việc</string>
+    <string name="note">Ghi chú</string>
+
 
 </resources>

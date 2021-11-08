@@ -148,12 +148,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <ExpandableListView
             android:id="@+id/elvTaskGroup"
-            android:layout_below="@id/menuCreateGroupTask"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </ExpandableListView>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/menuCreateGroupTask"></ExpandableListView>
     </RelativeLayout>
 
 </FrameLayout>

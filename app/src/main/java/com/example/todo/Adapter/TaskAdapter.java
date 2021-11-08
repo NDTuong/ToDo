@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,7 +41,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = mListTask.get(position);
-        if(task != null){
+        if(task == null){
             return;
         }
         holder.taskName.setText(task.getTaskName());
@@ -56,14 +57,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return 0;
     }
 
-    public class TaskViewHolder extends RecyclerView.ViewHolder {
-        private TextView taskName, Deadline, Process;
+    public static class TaskViewHolder extends RecyclerView.ViewHolder {
+        private final TextView taskName, Deadline, Process;
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            taskName = (TextView) itemView.findViewById(R.id.tvTaskName);
-            Deadline = (TextView) itemView.findViewById(R.id.tvDeadline);
-            Process = (TextView) itemView.findViewById(R.id.tvProcess);
+            taskName = itemView.findViewById(R.id.tvTaskName);
+            Deadline =  itemView.findViewById(R.id.tvDeadline);
+            Process =  itemView.findViewById(R.id.tvProcess);
         }
     }
 }
