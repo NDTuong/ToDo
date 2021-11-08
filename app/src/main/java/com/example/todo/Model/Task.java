@@ -3,17 +3,17 @@ package com.example.todo.Model;
 import java.util.List;
 
 public class Task {
-    java.lang.String taskName;
+    String taskName;
     List<Task> subTask;
     boolean isComplete;
-    java.lang.String startTime;
-    java.lang.String endTime;
-    java.lang.String process;
-    java.lang.String startDay;
-    java.lang.String endDay;
-    java.lang.String location;
-    java.lang.String timeComplete;
-    java.lang.String dayComplete;
+    String startTime;
+    String endTime;
+    String process;
+    String startDay;
+    String endDay;
+    String location;
+    String timeComplete;
+    String dayComplete;
     boolean isImportant;
     boolean isShareTask;
     String string;

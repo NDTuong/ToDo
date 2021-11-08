@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.todo.Adapter.GroupTaskAdapter;
 import com.example.todo.Model.Task;
 import com.example.todo.R;
+import com.example.todo.TaskActivity;
 import com.example.todo.TimeTableActivity;
 
 import java.util.ArrayList;
@@ -40,13 +41,18 @@ public class MenuFragment extends Fragment {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_menu, container, false);
 
+        // Click vào thời khóa biểu
         tvTimeTable = (TextView) view.findViewById(R.id.tvTimeTableMenu);
-        tvTimeTable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), TimeTableActivity.class);
-                startActivity(intent);
-            }
+        tvTimeTable.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), TimeTableActivity.class);
+            startActivity(intent);
+        });
+
+        // Click vào công việc của tôi
+        tvTask = (TextView) view.findViewById(R.id.tvTaskMenu);
+        tvTask.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), TaskActivity.class);
+            startActivity(intent);
         });
 
 

@@ -24,19 +24,16 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.todo.Fragment.EditTimeTableFragment;
+import com.example.todo.Fragment.AddTimeTableFragment;
 import com.example.todo.Model.DayOfWeek;
 import com.example.todo.Model.TimeTable;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,7 +44,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -77,60 +73,40 @@ public class TimeTableActivity extends AppCompatActivity {
         // Kết nối database
         dbTimeTable = FirebaseDatabase.getInstance().getReference("time_table");
 
-        // [START] Get current user ID
+        // Get current user ID
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             UID = currentUser.getUid();
         }
-        // [END]
 
-        // [START] Set sự kiện khi click fab
-        fabAddTimeTable = (FloatingActionButton) findViewById(R.id.fabAddTimeTable);
-        fabAddTimeTable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fabAddTimeTable.setVisibility(View.GONE);
-                loadFragment(new EditTimeTableFragment());
-
-            }
+        // Set sự kiện khi click fab
+        fabAddTimeTable = findViewById(R.id.fabAddTimeTable);
+        fabAddTimeTable.setOnClickListener(v -> {
+            fabAddTimeTable.setVisibility(View.GONE);
+            loadFragment(new AddTimeTableFragment());
         });
-        // [END]
 
-        // [START] Đóng fragment thêm thời khóa biểu khi click ra ngoài
+
+
+        // Đóng fragment thêm thời khóa biểu khi click ra ngoài
         constraintLayout = findViewById(R.id.constraintLayout);
-        constraintLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closeFragment(v);
-            }
-        });
-        linearLayoutTimeTable = (LinearLayout) findViewById(R.id.linearLayoutTimeTable);
-        linearLayoutTimeTable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closeFragment(v);
-            }
-        });
-        // [END]
+        constraintLayout.setOnClickListener(v -> closeFragment(v));
+        linearLayoutTimeTable = findViewById(R.id.linearLayoutTimeTable);
+        linearLayoutTimeTable.setOnClickListener(v -> closeFragment(v));
 
-        // [START] Quay lại MenuFragment
-        ivBack2Menu = (ImageView) findViewById(R.id.iconBack2Menu);
-        ivBack2Menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        // [END]
 
-        rowMonday = (TableRow) findViewById(R.id.rowMonday);
-        rowTuesday = (TableRow) findViewById(R.id.rowTuesday);
-        rowWednesday = (TableRow) findViewById(R.id.rowWednesday);
-        rowThursday = (TableRow) findViewById(R.id.rowThursday);
-        rowFriday = (TableRow) findViewById(R.id.rowFriday);
-        rowSaturday = (TableRow) findViewById(R.id.rowSaturday);
-        rowSunday = (TableRow) findViewById(R.id.rowSunday);
+        // Quay lại MenuFragment
+        ivBack2Menu = findViewById(R.id.iconBack2Menu);
+        ivBack2Menu.setOnClickListener(v -> finish());
+
+        rowMonday = findViewById(R.id.rowMonday);
+        rowTuesday = findViewById(R.id.rowTuesday);
+        rowWednesday = findViewById(R.id.rowWednesday);
+        rowThursday = findViewById(R.id.rowThursday);
+        rowFriday = findViewById(R.id.rowFriday);
+        rowSaturday = findViewById(R.id.rowSaturday);
+        rowSunday = findViewById(R.id.rowSunday);
 
         // Lấy dữ liệu từ database và hiển thị
         getTimeTableAndShow(dbTimeTable);
@@ -144,7 +120,7 @@ public class TimeTableActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-            Intent intent = new Intent(TimeTableActivity.this, Login.class);
+            Intent intent = new Intent(TimeTableActivity.this, LoginActivity.class);
             startActivity(intent);
         }
     }

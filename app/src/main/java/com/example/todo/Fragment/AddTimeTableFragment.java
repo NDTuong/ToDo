@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.todo.MUtils;
 import com.example.todo.Model.DayOfWeek;
 import com.example.todo.Model.TimeTable;
 import com.example.todo.R;
@@ -32,7 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class EditTimeTableFragment extends Fragment {
+public class AddTimeTableFragment extends Fragment {
     View view;
 
     TextInputEditText editTextSubject, editTextClassroom;
@@ -55,7 +54,7 @@ public class EditTimeTableFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_edit_time_table, container, false);
+        view = inflater.inflate(R.layout.fragment_add_time_table, container, false);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
