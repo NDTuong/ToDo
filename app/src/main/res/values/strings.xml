@@ -43,7 +43,7 @@
     <string name="saturday">Thứ bảy</string>
     <string name="sunday">Chủ nhật</string>
 
-    
+
     <!-- Fragment thêm thời khóa biểu -->
     <string name="subject">Tên môn học</string>
     <string name="duration">Thời gian:</string>
@@ -56,18 +56,7 @@
     <string name="update_success">Đã lưu thay đổi!</string>
     <string name="update_fail">Lỗi!</string>
     <string name="duration_error">Thời gian kết thúc nhỏ hơn thời gian bắt đầu!</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
 
-    <string-array name="spinner_choices">
-        <item>Thứ 2</item>
-        <item>Thứ 3</item>
-        <item>Thứ 4</item>
-        <item>Thứ 5</item>
-        <item>Thứ 6</item>
-        <item>Thứ 7</item>
-        <item>Chủ Nhật</item>
-    </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="todo">TODO</string>
 </resources>

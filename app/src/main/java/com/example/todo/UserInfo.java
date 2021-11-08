@@ -17,7 +17,7 @@ public class UserInfo extends AppCompatActivity {
     }
     public void clickOut(View view){
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(UserInfo.this, Login.class);
+        Intent intent = new Intent(UserInfo.this, LoginActivity.class);
         startActivity(intent);
     }
 }

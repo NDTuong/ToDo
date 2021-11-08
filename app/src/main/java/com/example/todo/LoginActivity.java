@@ -19,9 +19,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "Login";
     // [START declare_auth]
@@ -83,12 +82,12 @@ public class Login extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(Login.this, MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(Login.this, R.string.login_failed,
+                            Toast.makeText(LoginActivity.this, R.string.login_failed,
                                     Toast.LENGTH_SHORT).show();
                         }
                         progressBar.setVisibility(View.GONE);
@@ -98,7 +97,12 @@ public class Login extends AppCompatActivity {
     }
 
     public void clickSignUp(View view){
-        Intent intent = new Intent(Login.this, SignUp.class);
+        Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+        startActivity(intent);
+    }
+
+    public void clickForgotPassword(View view){
+        Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
         startActivity(intent);
     }
 }
