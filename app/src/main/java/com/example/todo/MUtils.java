@@ -6,5 +6,5 @@ import com.example.todo.Model.DayOfWeek;
 import java.util.ArrayList;
 
 public class MUtils extends AppCompatActivity {
-
+private String d;
 }
