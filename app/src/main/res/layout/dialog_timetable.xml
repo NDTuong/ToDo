@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,6 +14,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:hint="@string/subject"
             app:boxBackgroundColor="#fff">
 
@@ -27,6 +29,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:hint="@string/subject"
             app:boxBackgroundColor="#fff">
 
@@ -42,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -61,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -110,27 +115,33 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:layout_marginTop="5dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
+                android:background="@drawable/bg_button_dark"
+                android:textColor="@color/white"
                 android:text="@string/btn_cancle" />
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_dark"
+                android:textColor="@color/white"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:text="@string/save" />
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:background="@drawable/bg_button_dark"
+                android:textColor="@color/white"
                 android:text="@string/delete" />
 
 

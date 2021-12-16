@@ -1,7 +1,7 @@
 <resources>
 <!-- Login - SignUp Activity-->
     <string name="app_name">ToDo</string>
-    <string name="btn_login">Đănh nhập</string>
+    <string name="btn_login">Đăng nhập</string>
     <string name="btn_sign_up">Đăng kí</string>
     <string name="back_2_login">Quay lại đăng nhập</string>
     <string name="enter_email">Email</string>
@@ -16,7 +16,7 @@
     <string name="sign_up_success">Đăng kí thành công!</string>
     <string name="sign_up_fail">Đăng kí không thành công!</string>
     <string name="login_failed">Đăng nhập không thành công</string>
-
+    <string name="enter_your_email">Nhập email đăng kí tài khoản của bạn:</string>
 <!-- Main activity, Home + Menu Fragment-->
     <string name="tab_home">Trang chủ</string>
     <string name="tab_menu">Tiện ích</string>
@@ -76,6 +76,9 @@
     <string name="deadline">Ngày đến hạn</string>
     <string name="share_task">Chia sẻ công việc</string>
     <string name="note">Ghi chú</string>
+    <string name="btn_send">Gửi</string>
+    <string name="select_day">Chọn ngày:</string>
+    <string name="select_time">Chọn giờ:</string>
 
 
 </resources>

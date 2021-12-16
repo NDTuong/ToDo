@@ -3,11 +3,13 @@ package com.example.todo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -50,24 +52,21 @@ public class LoginActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.INVISIBLE);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String Email = email.getEditText().getText().toString().trim();
-                String Password = password.getEditText().getText().toString().trim();
+        btnLogin.setOnClickListener(v -> {
+            String Email = email.getEditText().getText().toString().trim();
+            String Password = password.getEditText().getText().toString().trim();
 
-                if (TextUtils.isEmpty(Email)) {
-                    email.setError(getString(R.string.empty_email));
-                    return;
-                } else {email.setError(null);}
+            if (TextUtils.isEmpty(Email)) {
+                email.setError(getString(R.string.empty_email));
+                return;
+            } else {email.setError(null);}
 
-                if (TextUtils.isEmpty(Password)) {
-                    password.setError(getString(R.string.empty_password));
-                    return;
-                } else {password.setError(null);}
-                progressBar.setVisibility(View.VISIBLE);
-                login(Email, Password);
-            }
+            if (TextUtils.isEmpty(Password)) {
+                password.setError(getString(R.string.empty_password));
+                return;
+            } else {password.setError(null);}
+            progressBar.setVisibility(View.VISIBLE);
+            login(Email, Password);
         });
 
     }
@@ -102,7 +101,47 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void clickForgotPassword(View view){
-        Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-        startActivity(intent);
+        Dialog mDialog;
+        mDialog=new Dialog(LoginActivity.this);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mDialog.setContentView(R.layout.dialog_forgot_password);
+        Button send,cancel;
+        TextInputLayout email;
+        ProgressBar progressBar2;
+        send =(Button) mDialog.findViewById(R.id.btnSend);
+        cancel =(Button) mDialog.findViewById(R.id.btnCancel);
+        email = (TextInputLayout)  mDialog.findViewById(R.id.textInputEmail);
+        progressBar2 = (ProgressBar) mDialog.findViewById(R.id.progressBar2);
+        progressBar2.setVisibility(View.INVISIBLE);
+        send.setOnClickListener(v -> {
+            String forgot_email = email.getEditText().getText().toString().trim();
+            if (TextUtils.isEmpty(forgot_email)) {
+                email.setError(getString(R.string.empty_email));
+                return;
+            }
+            progressBar2.setVisibility(View.VISIBLE);
+            mAuth = FirebaseAuth.getInstance();
+            mAuth.sendPasswordResetEmail(forgot_email)
+
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "Thành công! Vui lòng kiểm tra email.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Không thành công! Vui lòng kiểm tra lại email đã nhập.", Toast.LENGTH_SHORT).show();
+                            }
+
+                            progressBar2.setVisibility(View.GONE);
+                        }
+                    });
+
+            mDialog.cancel();
+
+        });
+        cancel.setOnClickListener(v -> {
+            mDialog.cancel();
+        });
+        mDialog.show();
     }
 }

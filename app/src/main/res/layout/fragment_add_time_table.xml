@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    android:background="@color/white"
     tools:context=".Fragment.AddTimeTableFragment">
 
     <LinearLayout
@@ -15,6 +15,7 @@
             android:id="@+id/textFieldSubjects"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:hint="@string/subject"
             app:boxBackgroundColor="#fff">
 
@@ -35,6 +36,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:id="@+id/classroom"
                 android:lines="1"/>
 
@@ -43,7 +45,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal"
            >
 
@@ -62,6 +64,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:background="#fff"
             android:orientation="horizontal"
             >
@@ -109,15 +112,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
+            android:layout_marginTop="5dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnAddTimeTable"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_button_dark"
                 android:text="@string/btn_add_timetable"
                 />
-
         </LinearLayout>
     </LinearLayout>
 

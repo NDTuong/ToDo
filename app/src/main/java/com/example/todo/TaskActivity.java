@@ -8,8 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,8 +22,11 @@ import com.example.todo.Adapter.TaskAdapter;
 import com.example.todo.Fragment.AddTaskFragment;
 import com.example.todo.Model.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class TaskActivity extends AppCompatActivity {
@@ -34,7 +40,8 @@ public class TaskActivity extends AppCompatActivity {
     TaskAdapter taskAdapter;
 
     FloatingActionButton fabAddTask;
-    ConstraintLayout constraintLayout;
+    private int count = 0;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,35 +73,39 @@ public class TaskActivity extends AppCompatActivity {
             loadFragment(new AddTaskFragment());
 
         });
-        // Đóng Fragment Add Task khi click ra ngoài (nếu có thể)
-//        constraintLayout = findViewById(R.id.constraintLayout);
-//        constraintLayout.setOnClickListener(this::closeFragment);
 
-        //
-
-        //
-
+        // Hiển thị danh sách task ra màn hình
         rcvTask = (RecyclerView) findViewById(R.id.recycleViewTask);
         taskAdapter = new TaskAdapter(this);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         rcvTask.setLayoutManager(linearLayoutManager);
-
         taskAdapter.setData(getListTask());
         rcvTask.setAdapter(taskAdapter);
     }
+
+    // khi bấm quay lại mà có fagment thì đóng
+    @Override
+    public void onBackPressed() {
+        if (count >= 1) {
+            closeFragment();
+            count = 0;
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 
     private List<Task> getListTask(){
         List<Task> tasks = new ArrayList<>();
         //lấy từ database
 
-        tasks.add(new Task("Task 1",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 2",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 3",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 4",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 5",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 6",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 7",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
+        tasks.add(new Task("Task 1", Calendar.getInstance()));
+        tasks.add(new Task("Task 2",null));
+        tasks.add(new Task("Task 3",Calendar.getInstance()));
+        tasks.add(new Task("Task 4",Calendar.getInstance()));
+        tasks.add(new Task("Task 5",Calendar.getInstance()));
+        tasks.add(new Task("Task 6",Calendar.getInstance()));
+        tasks.add(new Task("Task 7",Calendar.getInstance()));
         return tasks;
     }
 
@@ -107,17 +118,26 @@ public class TaskActivity extends AppCompatActivity {
         // replace the FrameLayout with new Fragment
         fragmentTransaction.replace(R.id.frameLayout, fragment, "AddTask");
         fragmentTransaction.commit(); // save the changes
+        count++;
+
+    }
+
+    // Hàm ẩn bàn phím
+    private void hideKeyboard() {
+        View v = TaskActivity.this.getCurrentFocus();
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
     }
 
     // Hàm đóng fragment
-    private void closeFragment(View v) {
+    private void closeFragment() {
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentByTag("AddTask");
         if (fragment != null) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.remove(fragment);
             fragmentTransaction.commit();
-//            hideKeyboard(v);
+            hideKeyboard();
             fabAddTask.setVisibility(View.VISIBLE);
         }
     }

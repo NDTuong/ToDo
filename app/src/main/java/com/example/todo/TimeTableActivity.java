@@ -64,14 +64,12 @@ public class TimeTableActivity extends AppCompatActivity {
 
     String UID;
     int t1Hour, t1Minute, t2Hour, t2Minute;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_table);
-
-        // Kết nối database
-        dbTimeTable = FirebaseDatabase.getInstance().getReference("time_table");
 
         // Get current user ID
         mAuth = FirebaseAuth.getInstance();
@@ -79,6 +77,9 @@ public class TimeTableActivity extends AppCompatActivity {
         if (currentUser != null) {
             UID = currentUser.getUid();
         }
+
+        // Kết nối database
+        dbTimeTable = FirebaseDatabase.getInstance().getReference(UID);
 
         // Set sự kiện khi click fab
         fabAddTimeTable = findViewById(R.id.fabAddTimeTable);
@@ -90,10 +91,10 @@ public class TimeTableActivity extends AppCompatActivity {
 
 
         // Đóng fragment thêm thời khóa biểu khi click ra ngoài
-        constraintLayout = findViewById(R.id.constraintLayout);
-        constraintLayout.setOnClickListener(v -> closeFragment(v));
-        linearLayoutTimeTable = findViewById(R.id.linearLayoutTimeTable);
-        linearLayoutTimeTable.setOnClickListener(v -> closeFragment(v));
+        //constraintLayout = findViewById(R.id.constraintLayout);
+        //constraintLayout.setOnClickListener(v -> closeFragment(v));
+        //linearLayoutTimeTable = findViewById(R.id.linearLayoutTimeTable);
+        //linearLayoutTimeTable.setOnClickListener(v -> closeFragment(v));
 
 
         // Quay lại MenuFragment
@@ -126,6 +127,18 @@ public class TimeTableActivity extends AppCompatActivity {
     }
     // [END]
 
+    // khi bấm quay lại mà có fagment thì đóng
+    @Override
+    public void onBackPressed() {
+        if (count >= 1) {
+            View v = this.getCurrentFocus();
+            closeFragment(v);
+            count = 0;
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     // Hàm load fragment
     private void loadFragment(Fragment fragment) {
         // create a FragmentManager
@@ -135,6 +148,7 @@ public class TimeTableActivity extends AppCompatActivity {
         // replace the FrameLayout with new Fragment
         fragmentTransaction.replace(R.id.frameLayout, fragment, "AddTimeTable");
         fragmentTransaction.commit(); // save the changes
+        count++;
     }
 
     // Hàm ẩn bàn phím
@@ -148,10 +162,10 @@ public class TimeTableActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentByTag("AddTimeTable");
         if (fragment != null) {
+            hideKeyboard(v);
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.remove(fragment);
             fragmentTransaction.commit();
-            hideKeyboard(v);
             fabAddTimeTable.setVisibility(View.VISIBLE);
         }
     }
@@ -161,6 +175,8 @@ public class TimeTableActivity extends AppCompatActivity {
         TextView textView = new TextView(this);
         textView.setText(text);
         textView.setGravity(1);
+        if(!text.equals(" "))
+            textView.setPadding(5,0,5,0);
         linearLayout.addView(textView);
     }
 
@@ -168,12 +184,17 @@ public class TimeTableActivity extends AppCompatActivity {
     private void showTimeTable(TimeTable timeTable) {
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setBackgroundColor(Color.parseColor("#f5f5f5"));
-        linearLayout.setPadding(5, 0, 5, 0);
+        linearLayout.setBackgroundColor(Color.parseColor("#8bf6ff"));
+        linearLayout.setPadding(5, 13, 5, 14);
+
+        LinearLayout linearLayout2 = new LinearLayout(this);
+        linearLayout2.setBackgroundColor(Color.parseColor("#ffffff"));
+
         DayOfWeek d = timeTable.getDay();
         switch (d) {
             case MON:
                 rowMonday.addView(linearLayout);
+                rowMonday.addView(linearLayout2);
                 break;
             case TUE:
                 rowTuesday.addView(linearLayout);
@@ -198,7 +219,7 @@ public class TimeTableActivity extends AppCompatActivity {
         setTextView2Layout(timeTable.getSubject(), linearLayout);
         setTextView2Layout(timeTable.getDuration(), linearLayout);
         setTextView2Layout(timeTable.getLocation(), linearLayout);
-
+        setTextView2Layout(" ", linearLayout2);
         linearLayout.setOnLongClickListener(v -> {
             openEditTimeTableDialog(timeTable, linearLayout);
             return false;
@@ -208,7 +229,7 @@ public class TimeTableActivity extends AppCompatActivity {
     // Hàm lấy dữ liệu thời khóa biểu từ database và hiển thị
     private void getTimeTableAndShow(DatabaseReference db) {
         ArrayList<TimeTable> listTimeTable = new ArrayList<TimeTable>();
-        db.child(UID).addValueEventListener(new ValueEventListener() {
+        db.child("time_table").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -344,7 +365,7 @@ public class TimeTableActivity extends AppCompatActivity {
                 TimeTable newTimeTable = new TimeTable(mSubject, mClassroom, convert2DOF(day), duration1, idTimeTable);
                 if (!newTimeTable.equals(timeTable)) {
                     Map<String, Object> childUpdates = new HashMap<>();
-                    childUpdates.put(UID + "/" + idTimeTable, newTimeTable);
+                    childUpdates.put("time_table" + "/" + idTimeTable, newTimeTable);
                     dbTimeTable.updateChildren(childUpdates).addOnSuccessListener(unused -> Toast.makeText(editDialog.getContext(),R.string.update_success, Toast.LENGTH_SHORT).show())
                             .addOnFailureListener(e -> Toast.makeText(editDialog.getContext(),R.string.update_fail, Toast.LENGTH_SHORT).show());
                     subject.setText("");
@@ -377,20 +398,17 @@ public class TimeTableActivity extends AppCompatActivity {
     private void showTimePicker(View v, int hour, int minute, TextView tv) {
         final int[] h = {hour};
         final int[] m = {minute};
-        TimePickerDialog timePickerDialog = new TimePickerDialog(v.getContext(),
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        //Initialize hour and minute
-                        h[0] = hourOfDay;
-                        m[0] = minute;
-                        //Initialize calendar
-                        Calendar calendar = Calendar.getInstance();
-                        //Set hour and
-                        calendar.set(0, 0, 0, h[0], m[0]);
-                        //set selected time on text view
-                        tv.setText(DateFormat.format("HH:mm", calendar));
-                    }
+        TimePickerDialog timePickerDialog = new TimePickerDialog(v.getContext(),R.style.MyTimePickerDialogStyle,
+                (view, hourOfDay, minute1) -> {
+                    //Initialize hour and minute
+                    h[0] = hourOfDay;
+                    m[0] = minute1;
+                    //Initialize calendar
+                    Calendar calendar = Calendar.getInstance();
+                    //Set hour and
+                    calendar.set(0, 0, 0, h[0], m[0]);
+                    //set selected time on text view
+                    tv.setText(DateFormat.format("HH:mm", calendar));
                 }, 24, 0, true);
         timePickerDialog.updateTime(h[0], m[0]);
         timePickerDialog.show();

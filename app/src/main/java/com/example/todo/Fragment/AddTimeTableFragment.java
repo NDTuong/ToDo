@@ -48,7 +48,7 @@ public class AddTimeTableFragment extends Fragment {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
-    String UID;
+    private String UID;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,7 +108,6 @@ public class AddTimeTableFragment extends Fragment {
                 String subject = editTextSubject.getText().toString().trim();
                 String classroom = editTextClassroom.getText().toString().trim();
                 String day = spinnerDOF.getSelectedItem().toString();
-                System.out.println(day);
                 String startTime = tvTimeStart.getText().toString();
                 String endTime = tvTimeEnd.getText().toString();
                 String duration = startTime + " - " + endTime;
@@ -137,7 +136,7 @@ public class AddTimeTableFragment extends Fragment {
                 String idTimeTable = mDatabase.push().getKey();
                 TimeTable newTimeTable = new TimeTable(subject, classroom, convert2DOF(day), duration, idTimeTable);
                 assert idTimeTable != null;
-                mDatabase.child("time_table").child(UID).child(idTimeTable).setValue(newTimeTable);
+                mDatabase.child(UID).child("time_table").child(idTimeTable).setValue(newTimeTable);
                 editTextSubject.setText("");
                 editTextClassroom.setText("");
             }
@@ -150,20 +149,17 @@ public class AddTimeTableFragment extends Fragment {
         final int[] h = {hour};
         final int[] m = {minute};
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        //Initialize hour and minute
-                        h[0] = hourOfDay;
-                        m[0] = minute;
-                        //Initialize calendar
-                        Calendar calendar = Calendar.getInstance();
-                        //Set hour and
-                        calendar.set(0, 0, 0, h[0], m[0]);
-                        //set selected time on text view
-                        tv.setText(DateFormat.format("HH:mm", calendar));
-                    }
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), R.style.MyTimePickerDialogStyle,
+                (view, hourOfDay, minute1) -> {
+                    //Initialize hour and minute
+                    h[0] = hourOfDay;
+                    m[0] = minute1;
+                    //Initialize calendar
+                    Calendar calendar = Calendar.getInstance();
+                    //Set hour and
+                    calendar.set(0, 0, 0, h[0], m[0]);
+                    //set selected time on text view
+                    tv.setText(DateFormat.format("HH:mm", calendar));
                 }, 24, 0, true);
         timePickerDialog.updateTime(h[0], m[0]);
         timePickerDialog.show();

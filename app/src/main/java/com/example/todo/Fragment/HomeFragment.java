@@ -15,6 +15,7 @@ import com.example.todo.Model.Task;
 import com.example.todo.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -42,13 +43,13 @@ public class HomeFragment extends Fragment {
 
     private List<Task> getListTask(){
         List<Task> tasks = new ArrayList<>();
-        tasks.add(new Task("Task 1",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 2",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 3",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 4",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 5",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 6",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
-        tasks.add(new Task("Task 7",null, false, "1/1/2000", "2/1/2000", "0/0", "1/1/2000", "2/1/2000"));
+        tasks.add(new Task("Task 1", Calendar.getInstance()));
+        tasks.add(new Task("Task 2",Calendar.getInstance()));
+        tasks.add(new Task("Task 3",Calendar.getInstance()));
+        tasks.add(new Task("Task 4",Calendar.getInstance()));
+        tasks.add(new Task("Task 5",Calendar.getInstance()));
+        tasks.add(new Task("Task 6",Calendar.getInstance()));
+        tasks.add(new Task("Task 7",Calendar.getInstance()));
         return tasks;
     }
 }

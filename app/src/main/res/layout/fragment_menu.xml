@@ -17,18 +17,25 @@
                 android:orientation="horizontal"
                 android:id="@+id/menuTimetable"
                 android:padding="10dp"
+                android:layout_marginTop="10dp"
                 tools:ignore="UsingOnClickInXml">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_default_avatar"
+                    android:src="@drawable/ic_baseline_event_24"
+                    android:tint="@color/dark_color"
                     android:layout_gravity="center_vertical"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:id="@+id/tvTimeTableMenu"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/opensans_semicondensed_bold"
                     android:text="@string/menu_timetable" />
             </LinearLayout>
 
@@ -43,13 +50,19 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_default_avatar"
+                    android:src="@drawable/ic_baseline_checklist_24"
+                    android:tint="#017815"
                     android:layout_gravity="center_vertical"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:id="@+id/tvTaskMenu"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/opensans_semicondensed_bold"
                     android:text="@string/menu_task" />
             </LinearLayout>
 
@@ -64,13 +77,19 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_default_avatar"
-                    android:layout_gravity="center_vertical"/>
+                    android:src="@drawable/ic_baseline_share_24"
+                    android:layout_gravity="center_vertical"
+                    app:tint="#0024c2" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:id="@+id/tvShareTaskMenu"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/opensans_semicondensed_bold"
                     android:text="@string/menu_share_task" />
             </LinearLayout>
 
@@ -85,13 +104,19 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_default_avatar"
-                    android:layout_gravity="center_horizontal"/>
+                    android:src="@drawable/ic_baseline_star_border_24"
+                    android:layout_gravity="center_horizontal"
+                    app:tint="#ed1509" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:id="@+id/tvImportantTaskMenu"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/opensans_semicondensed_bold"
                     android:text="@string/menu_important_task" />
             </LinearLayout>
 
@@ -99,6 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
             android:id="@+id/menuOther"
             android:layout_below="@+id/menuImportantTask"
             android:padding="10dp">
@@ -106,13 +132,19 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_default_avatar"
-                android:layout_gravity="center_horizontal"/>
+                android:src="@drawable/ic_baseline_more_horiz_24"
+                android:layout_gravity="center_horizontal"
+                app:tint="#00c2a8" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:id="@+id/tvOtherMenu"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/opensans_semicondensed_bold"
                 android:text="@string/menu_other" />
         </LinearLayout>
 
@@ -134,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_default_avatar"
+                android:src="@drawable/ic_baseline_add_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

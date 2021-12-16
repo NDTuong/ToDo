@@ -101,10 +101,10 @@ public class GroupTaskAdapter extends BaseExpandableListAdapter {
         }
         TextView taskName = view.findViewById(R.id.tvTaskName);
         TextView deadline = view.findViewById(R.id.tvDeadline);
-        TextView process = view.findViewById(R.id.tvProcess);
+//        TextView process = view.findViewById(R.id.tvProcess);
         taskName.setText(task.getTaskName());
-        deadline.setText(task.getEndTime());
-        process.setText(task.getProcess());
+        deadline.setText(task.getDeadLine().toString());
+//        process.setText(task.getProcess());
         return view;
     }
 
