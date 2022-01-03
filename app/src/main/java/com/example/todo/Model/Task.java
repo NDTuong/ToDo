@@ -20,6 +20,16 @@ public class Task {
     String note;
     Map<String, List<String>> listShare;
 
+    public String getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
+
+    String taskID;
+
     public Task() {
     }
 
@@ -137,11 +147,11 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return isComplete == task.isComplete && isImportant == task.isImportant && isShareTask == task.isShareTask && taskName.equals(task.taskName) && Objects.equals(deadLine, task.deadLine) && Objects.equals(notify, task.notify) && Objects.equals(subTask, task.subTask) && Objects.equals(process, task.process) && Objects.equals(timeComplete, task.timeComplete) && Objects.equals(note, task.note) && Objects.equals(listShare, task.listShare);
+        return taskName.equals(task.taskName) && Objects.equals(deadLine, task.deadLine) && Objects.equals(notify, task.notify) && Objects.equals(subTask, task.subTask);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskName, deadLine, notify, subTask, isComplete, isImportant, isShareTask, process, timeComplete, note, listShare);
+        return Objects.hash(taskName, deadLine, notify, subTask);
     }
 }

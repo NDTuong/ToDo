@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.todo.Adapter.TaskAdapter;
 import com.example.todo.Fragment.AddTaskFragment;
@@ -119,7 +121,7 @@ public class TaskActivity extends AppCompatActivity {
         taskAdapter = new TaskAdapter(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         rcvTask.setLayoutManager(linearLayoutManager);
-        taskAdapter.setData(tasks);
+        taskAdapter.setData(tasks, UID);
         rcvTask.setAdapter(taskAdapter);
     }
 
@@ -141,6 +143,7 @@ public class TaskActivity extends AppCompatActivity {
 //                    }
                     tasks.add(mTask);
                     showTask(tasks);
+                    Log.d("AAAAB", "After: " + tasks.toString());
                 }
             }
 

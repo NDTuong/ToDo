@@ -36,8 +36,8 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(),RecyclerView.VERTICAL,false);
         rcvHomeTask.setLayoutManager(linearLayoutManager);
 
-        taskAdapter.setData(getListTask());
-        rcvHomeTask.setAdapter(taskAdapter);
+//        taskAdapter.setData(getListTask(), UID);
+//        rcvHomeTask.setAdapter(taskAdapter);
         return view;
     }
 

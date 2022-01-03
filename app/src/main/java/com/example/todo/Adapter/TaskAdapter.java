@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.style.StrikethroughSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,21 +20,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todo.Model.Task;
 import com.example.todo.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
-
     private Context mContext;
     private List<Task> mListTask;
+    private String UID;
 
     public TaskAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void setData(List<Task> tasks){
+    public void setData(List<Task> tasks, String UID){
         this.mListTask = tasks;
+        this.UID = UID;
         notifyDataSetChanged();
 
     }
@@ -48,6 +52,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = mListTask.get(position);
+        String taskID = task.getTaskID();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(UID)
+                .child("task").child(taskID).child("complete");
         RelativeLayout.LayoutParams taskNameParams =
                 (RelativeLayout.LayoutParams) holder.taskName.getLayoutParams();
         RelativeLayout.LayoutParams icon1Params =
@@ -99,8 +106,23 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             holder.taskName.setText(ss);
             holder.taskName.setTextColor(Color.parseColor("#757575"));
         }
-
-
+        holder.cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(holder.cb.isChecked()){
+                    SpannableString ss = new SpannableString(holder.taskName.getText().toString());
+                    ss.setSpan(new StrikethroughSpan(),0, holder.taskName.getText().toString().length(),0);
+                    holder.taskName.setText(ss);
+                    holder.taskName.setTextColor(Color.parseColor("#757575"));
+                    mDatabase.setValue(true);
+                }
+                if(!holder.cb.isChecked()){
+                    holder.taskName.setText(holder.taskName.getText().toString());
+                    holder.taskName.setTextColor(Color.parseColor("#000000"));
+                    mDatabase.setValue(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -115,9 +137,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         private final TextView taskName, Deadline, endDay;
         private final ImageView icon2, important, icon1, iconCalendar;
         private final CheckBox cb;
+
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
-
             taskName = itemView.findViewById(R.id.tvTaskName);
             Deadline =  itemView.findViewById(R.id.tvDeadline);
             icon2 = itemView.findViewById(R.id.icon2);
@@ -126,21 +148,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             endDay = itemView.findViewById(R.id.tvEndDay);
             iconCalendar = itemView.findViewById(R.id.iconCalendar);
             cb = itemView.findViewById(R.id.cbIsCompleted);
-            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(cb.isChecked()){
-                        SpannableString ss = new SpannableString(taskName.getText().toString());
-                        ss.setSpan(new StrikethroughSpan(),0, taskName.getText().toString().length(),0);
-                        taskName.setText(ss);
-                        taskName.setTextColor(Color.parseColor("#757575"));
-                    }
-                    if(!cb.isChecked()){
-                        taskName.setText(taskName.getText().toString());
-                        taskName.setTextColor(Color.parseColor("#000000 "));
-                    }
-                }
-            });
+
         }
     }
 }

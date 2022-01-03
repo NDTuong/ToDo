@@ -180,6 +180,7 @@ public class AddTaskFragment extends Fragment {
                 Log.d("AAAA","Task: " + newTask.toString());
                 Log.d("AAAA","size: " + UIDShare);
                 String idTask = mDatabase.push().getKey();
+                newTask.setTaskID(idTask);
                 mDatabase.child(UID).child("task").child(idTask).setValue(newTask).addOnCompleteListener(requireActivity(), new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
