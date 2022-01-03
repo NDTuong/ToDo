@@ -3,11 +3,12 @@ package com.example.todo.Model;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Task {
     String taskName;
-    Calendar deadLine;
-    Calendar notify;
+    String deadLine;
+    String notify;
     List<String> subTask;
 
     boolean isComplete;
@@ -17,14 +18,9 @@ public class Task {
     String process;;
     String timeComplete;
     String note;
-    Map<String, String> listShare;
+    Map<String, List<String>> listShare;
 
     public Task() {
-    }
-
-    public Task(String taskName, Calendar deadLine) {
-        this.taskName = taskName;
-        this.deadLine = deadLine;
     }
 
     public Task(String taskName) {
@@ -39,19 +35,19 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public Calendar getDeadLine() {
+    public String getDeadLine() {
         return deadLine;
     }
 
-    public void setDeadLine(Calendar deadLine) {
+    public void setDeadLine(String deadLine) {
         this.deadLine = deadLine;
     }
 
-    public Calendar getNotify() {
+    public String getNotify() {
         return notify;
     }
 
-    public void setNotify(Calendar notify) {
+    public void setNotify(String notify) {
         this.notify = notify;
     }
 
@@ -111,11 +107,41 @@ public class Task {
         this.note = note;
     }
 
-    public Map<String, String> getListShare() {
+    public Map<String, List<String>> getListShare() {
         return listShare;
     }
 
-    public void setListShare(Map<String, String> listShare) {
+    public void setListShare(Map<String, List<String>> listShare) {
         this.listShare = listShare;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "taskName='" + taskName + '\'' +
+                ", deadLine=" + deadLine +
+                ", notify=" + notify +
+                ", subTask=" + subTask +
+                ", isComplete=" + isComplete +
+                ", isImportant=" + isImportant +
+                ", isShareTask=" + isShareTask +
+                ", process='" + process + '\'' +
+                ", timeComplete='" + timeComplete + '\'' +
+                ", note='" + note + '\'' +
+                ", listShare=" + listShare +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return isComplete == task.isComplete && isImportant == task.isImportant && isShareTask == task.isShareTask && taskName.equals(task.taskName) && Objects.equals(deadLine, task.deadLine) && Objects.equals(notify, task.notify) && Objects.equals(subTask, task.subTask) && Objects.equals(process, task.process) && Objects.equals(timeComplete, task.timeComplete) && Objects.equals(note, task.note) && Objects.equals(listShare, task.listShare);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(taskName, deadLine, notify, subTask, isComplete, isImportant, isShareTask, process, timeComplete, note, listShare);
     }
 }

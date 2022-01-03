@@ -3,19 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/OneDrive/ToDo/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.21614583333333334" />
+        <entry key="..\:/OneDrive/ToDo/app/src/main/res/drawable/ic_baseline_people_24.xml" value="0.21614583333333334" />
+        <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/dialog_forgot_password.xml" value="0.2" />
+        <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/dialog_share_task.xml" value="0.25" />
+        <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/fragment_add_task.xml" value="0.33" />
+        <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/item_task.xml" value="0.33" />
         <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.21614583333333334" />
-        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/drawable/ic_baseline_people_24.xml" value="0.10416666666666667" />
-        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/drawable/ic_baseline_star_border_24.xml" value="0.10416666666666667" />
-        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/drawable/test_ed.xml" value="0.21614583333333334" />
-        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_forgot_password.xml" value="0.2" />
-        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_sign_up.xml" value="0.1793478260869565" />
-        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_task.xml" value="0.2" />
         <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_time_table.xml" value="0.2" />
         <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_user_info.xml" value="0.1859375" />
-        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/fragment_add_task.xml" value="0.2" />
-        <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/fragment_edit_time_table.xml" value="0.2" />
         <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/fragment_menu.xml" value="0.2" />
         <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/group_task_item.xml" value="0.2" />

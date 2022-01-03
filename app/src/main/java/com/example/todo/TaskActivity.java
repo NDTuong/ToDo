@@ -1,5 +1,6 @@
 package com.example.todo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -21,9 +22,15 @@ import android.widget.Spinner;
 import com.example.todo.Adapter.TaskAdapter;
 import com.example.todo.Fragment.AddTaskFragment;
 import com.example.todo.Model.Task;
+import com.example.todo.Model.TimeTable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,7 +48,11 @@ public class TaskActivity extends AppCompatActivity {
 
     FloatingActionButton fabAddTask;
     private int count = 0;
+
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+    private String UID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +62,19 @@ public class TaskActivity extends AppCompatActivity {
         // Quay lại MenuFragment
         ivBack2Menu = findViewById(R.id.iconBack2Menu);
         ivBack2Menu.setOnClickListener(v -> finish());
+
+        // Get current user ID
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            UID = currentUser.getUid();
+        } else {
+            Intent intent = new Intent(TaskActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+
+        // Kết nối database
+        mDatabase = FirebaseDatabase.getInstance().getReference(UID);
 
         // Tạo spinner chọn khoảng thời gian để hiển thị task
         range = new ArrayList<>();
@@ -74,13 +98,7 @@ public class TaskActivity extends AppCompatActivity {
 
         });
 
-        // Hiển thị danh sách task ra màn hình
-        rcvTask = (RecyclerView) findViewById(R.id.recycleViewTask);
-        taskAdapter = new TaskAdapter(this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
-        rcvTask.setLayoutManager(linearLayoutManager);
-        taskAdapter.setData(getListTask());
-        rcvTask.setAdapter(taskAdapter);
+        getListTaskAndShow();
     }
 
     // khi bấm quay lại mà có fagment thì đóng
@@ -95,18 +113,42 @@ public class TaskActivity extends AppCompatActivity {
     }
 
 
-    private List<Task> getListTask(){
+    private void showTask(List<Task> tasks){
+        // Hiển thị danh sách task ra màn hình
+        rcvTask = (RecyclerView) findViewById(R.id.recycleViewTask);
+        taskAdapter = new TaskAdapter(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        rcvTask.setLayoutManager(linearLayoutManager);
+        taskAdapter.setData(tasks);
+        rcvTask.setAdapter(taskAdapter);
+    }
+
+    private void getListTaskAndShow(){
         List<Task> tasks = new ArrayList<>();
         //lấy từ database
+        mDatabase.child("task").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Task mTask = snapshot.getValue(Task.class);
+                    assert mTask != null;
+                    if (tasks.contains(mTask)) {
+                        continue;
+                    }
+//                    if (checkUpdateTimeTable(mTimeTable, listTimeTable)) {
+//                        showTimeTable(mTimeTable);
+//                        continue;
+//                    }
+                    tasks.add(mTask);
+                    showTask(tasks);
+                }
+            }
 
-        tasks.add(new Task("Task 1", Calendar.getInstance()));
-        tasks.add(new Task("Task 2",null));
-        tasks.add(new Task("Task 3",Calendar.getInstance()));
-        tasks.add(new Task("Task 4",Calendar.getInstance()));
-        tasks.add(new Task("Task 5",Calendar.getInstance()));
-        tasks.add(new Task("Task 6",Calendar.getInstance()));
-        tasks.add(new Task("Task 7",Calendar.getInstance()));
-        return tasks;
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     // Hàm load fragment

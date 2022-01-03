@@ -1,17 +1,19 @@
 package com.example.todo.Adapter;
 
 import android.content.Context;
-import android.view.Gravity;
+import android.graphics.Color;
+import android.text.SpannableString;
+import android.text.style.StrikethroughSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -46,35 +48,58 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = mListTask.get(position);
-        SimpleDateFormat format = new SimpleDateFormat("d/MM/yyyy");
-
-        RelativeLayout.LayoutParams layoutParams =
+        RelativeLayout.LayoutParams taskNameParams =
                 (RelativeLayout.LayoutParams) holder.taskName.getLayoutParams();
+        RelativeLayout.LayoutParams icon1Params =
+                (RelativeLayout.LayoutParams) holder.icon1.getLayoutParams();
+        RelativeLayout.LayoutParams icon2Params =
+                (RelativeLayout.LayoutParams) holder.icon2.getLayoutParams();
 
         if(task == null){
             return;
         }
+
         holder.taskName.setText(task.getTaskName());
-        if(task.getNotify() != null){
-            holder.notify.setVisibility(View.VISIBLE);
+
+        if(task.getDeadLine() == null){
+            holder.iconCalendar.setVisibility(View.INVISIBLE);
+            holder.endDay.setVisibility(View.INVISIBLE);
+            holder.Deadline.setVisibility(View.INVISIBLE);
+            taskNameParams.addRule(RelativeLayout.CENTER_VERTICAL);
+            holder.taskName.setLayoutParams(taskNameParams);
+            icon1Params.addRule(RelativeLayout.CENTER_VERTICAL);
+            holder.icon1.setLayoutParams(icon1Params);
+            icon2Params.addRule(RelativeLayout.CENTER_VERTICAL);
+            holder.icon2.setLayoutParams(icon2Params);
+        } else {
+            holder.Deadline.setText(task.getDeadLine());
         }
+
+        if(task.isShareTask()){
+            holder.icon1.setVisibility(View.VISIBLE);
+            if(task.getNotify() != null){
+                holder.icon2.setVisibility(View.VISIBLE);
+            }
+        } else {
+            if(task.getNotify() != null){
+                holder.icon1.setVisibility(View.VISIBLE);
+                holder.icon1.setImageResource(R.drawable.ic_baseline_notifications_24);
+            }
+        }
+
 
         if(task.isImportant()){
             holder.important.setImageResource((R.drawable.ic_baseline_star_24));
         }
 
-        if(task.isShareTask()){
-            holder.shareTask.setVisibility(View.VISIBLE);
+        if(task.isComplete()){
+            holder.cb.setChecked(true);
+            SpannableString ss = new SpannableString(task.getTaskName());
+            ss.setSpan(new StrikethroughSpan(),0, task.getTaskName().length(),0);
+            holder.taskName.setText(ss);
+            holder.taskName.setTextColor(Color.parseColor("#757575"));
         }
-        if(task.getDeadLine() == null){
-            holder.iconCalendar.setVisibility(View.INVISIBLE);
-            holder.endDay.setVisibility(View.INVISIBLE);
-            holder.Deadline.setVisibility(View.INVISIBLE);
-            layoutParams.addRule(RelativeLayout.CENTER_VERTICAL);
-            holder.taskName.setLayoutParams(layoutParams);
-        } else {
-            holder.Deadline.setText(format.format(task.getDeadLine().getTime()));
-        }
+
 
     }
 
@@ -88,18 +113,34 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
         private final TextView taskName, Deadline, endDay;
-        private final ImageView notify, important, shareTask, iconCalendar;
+        private final ImageView icon2, important, icon1, iconCalendar;
+        private final CheckBox cb;
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
 
             taskName = itemView.findViewById(R.id.tvTaskName);
             Deadline =  itemView.findViewById(R.id.tvDeadline);
-            notify = itemView.findViewById(R.id.iconNotification);
+            icon2 = itemView.findViewById(R.id.icon2);
             important = itemView.findViewById(R.id.iconImportant);
-            shareTask = itemView.findViewById(R.id.iconShare);
+            icon1 = itemView.findViewById(R.id.icon1);
             endDay = itemView.findViewById(R.id.tvEndDay);
             iconCalendar = itemView.findViewById(R.id.iconCalendar);
-//            Process =  itemView.findViewById(R.id.tvProcess);
+            cb = itemView.findViewById(R.id.cbIsCompleted);
+            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(cb.isChecked()){
+                        SpannableString ss = new SpannableString(taskName.getText().toString());
+                        ss.setSpan(new StrikethroughSpan(),0, taskName.getText().toString().length(),0);
+                        taskName.setText(ss);
+                        taskName.setTextColor(Color.parseColor("#757575"));
+                    }
+                    if(!cb.isChecked()){
+                        taskName.setText(taskName.getText().toString());
+                        taskName.setTextColor(Color.parseColor("#000000 "));
+                    }
+                }
+            });
         }
     }
 }

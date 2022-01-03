@@ -79,6 +79,11 @@
     <string name="btn_send">Gửi</string>
     <string name="select_day">Chọn ngày:</string>
     <string name="select_time">Chọn giờ:</string>
+    <string name="enter_friend_email">Nhập email của bạn bè:</string>
+    <string name="note_share_email">(mỗi email cách nhau bởi dấu phẩy)</string>
+    <string name="num_people_default">2 người</string>
+    <string name="shared_with">Đã chia sẻ với: </string>
+    <string name="empty_task_name">Chưa nhập tên công việc!</string>
 
 
 </resources>

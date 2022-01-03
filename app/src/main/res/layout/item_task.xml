@@ -27,8 +27,9 @@
             android:layout_marginStart="3dp"
             android:layout_toEndOf="@+id/cbIsCompleted"
             android:fontFamily="@font/opensans_semicondensed_semi_bold"
-            android:padding="3dp"
-            android:text="@string/task_name" />
+            android:paddingTop="3dp"
+            android:text="@string/task_name"
+            android:textColor="@color/black" />
 
 <!--        <TextView-->
 <!--            android:id="@+id/tvProcess"-->
@@ -40,13 +41,14 @@
 <!--            android:text="@string/task_process_default" />-->
 
         <ImageView
-            android:id="@+id/iconShare"
-            android:visibility="invisible"
+            android:id="@+id/icon1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/tvTaskName"
             android:paddingTop="5dp"
-            android:src="@drawable/ic_baseline_people_24" />
+            android:src="@drawable/ic_baseline_people_24"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/iconImportant"
@@ -88,12 +90,12 @@
             android:text="@string/task_deadline_default" />
 
         <ImageView
-            android:id="@+id/iconNotification"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_below="@id/tvTaskName"
-            android:layout_marginTop="6dp"
-            android:layout_toEndOf="@id/tvDeadline"
+            android:id="@+id/icon2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:paddingTop="5dp"
+            android:layout_toEndOf="@id/icon1"
             android:src="@drawable/ic_baseline_notifications_24"
             android:visibility="invisible" />
 

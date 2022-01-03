@@ -100,13 +100,13 @@ public class MenuFragment extends Fragment {
 
     private List<Task> getListTask(){
         List<Task> tasks = new ArrayList<>();
-        tasks.add(new Task("Task 1", Calendar.getInstance()));
-        tasks.add(new Task("Task 2",Calendar.getInstance()));
-        tasks.add(new Task("Task 3",Calendar.getInstance()));
-        tasks.add(new Task("Task 4",Calendar.getInstance()));
-        tasks.add(new Task("Task 5",Calendar.getInstance()));
-        tasks.add(new Task("Task 6",Calendar.getInstance()));
-        tasks.add(new Task("Task 7",Calendar.getInstance()));
+//        tasks.add(new Task("Task 1", Calendar.getInstance()));
+//        tasks.add(new Task("Task 2",Calendar.getInstance()));
+//        tasks.add(new Task("Task 3",Calendar.getInstance()));
+//        tasks.add(new Task("Task 4",Calendar.getInstance()));
+//        tasks.add(new Task("Task 5",Calendar.getInstance()));
+//        tasks.add(new Task("Task 6",Calendar.getInstance()));
+//        tasks.add(new Task("Task 7",Calendar.getInstance()));
         return tasks;
     }
 

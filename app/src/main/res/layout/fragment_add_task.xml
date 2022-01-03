@@ -148,7 +148,9 @@
                     android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:id="@+id/linearLayout9"
+                        android:layout_width="wrap_content"
+                        android:paddingEnd="30dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:orientation="horizontal"
@@ -171,14 +173,24 @@
                             android:padding="3dp"
                             android:text="@string/share_task"
                             android:textSize="16sp" />
+
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/tvListEmailShare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:text=""
+                            android:textColor="@color/dark_color" />
                     </LinearLayout>
+
                     <ImageView
                         android:id="@+id/iconDeleteShare"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center_vertical"
-                        android:visibility="invisible"
                         android:src="@drawable/ic_baseline_delete_24"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -217,5 +229,10 @@
             android:textColor="@color/white"
             android:layout_margin="3dp"
             android:text="@string/save"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvHiddenUID"
+            android:visibility="invisible"/>
     </LinearLayout>
 </FrameLayout>
