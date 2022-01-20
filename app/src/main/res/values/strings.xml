@@ -1,5 +1,5 @@
 <resources>
-<!-- Login - SignUp Activity-->
+    <!-- Login - SignUp Activity-->
     <string name="app_name">ToDo</string>
     <string name="btn_login">Đăng nhập</string>
     <string name="btn_sign_up">Đăng kí</string>
@@ -17,16 +17,17 @@
     <string name="sign_up_fail">Đăng kí không thành công!</string>
     <string name="login_failed">Đăng nhập không thành công</string>
     <string name="enter_your_email">Nhập email đăng kí tài khoản của bạn:</string>
-<!-- Main activity, Home + Menu Fragment-->
+    <!-- Main activity, Home + Menu Fragment-->
     <string name="tab_home">Trang chủ</string>
-    <string name="tab_menu">Tiện ích</string>
+    <string name="tab_menu">Lập kế hoạch</string>
     <string name="task_name">Tên công việc</string>
     <string name="task_deadline_default">1/1/1999</string>
     <string name="task_process_default">(0/0)</string>
     <string name="task_end_day">Ngày hết hạn: </string>
     <string name="menu_timetable">Thời khóa biểu</string>
-    <string name="menu_task">Công việc của tôi</string>
-    <string name="menu_water">Nhắc uống nước</string>
+    <string name="menu_task">Tất cả công việc</string>
+    <string name="menu_note">Ghi chú</string>
+    <string name="menu_add">Tạo danh sách công việc mới</string>
     <string name="menu_share_task">Công việc được giao</string>
     <string name="menu_other">Tiện ích khác</string>
     <string name="menu_statistics">Thống kê</string>
@@ -84,6 +85,11 @@
     <string name="num_people_default">2 người</string>
     <string name="shared_with">Đã chia sẻ với: </string>
     <string name="empty_task_name">Chưa nhập tên công việc!</string>
+    <string name="setting">Cài đặt</string>
+    <string name="hello_default">Chào buổi sáng,</string>
+    <string name="profile">Cá nhân</string>
+    <string name="list_name">Tên dánh sách:</string>
+    <string name="select_icon">Chọn icon</string>
 
 
 </resources>

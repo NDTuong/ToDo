@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.todo.Fragment.HomeFragment;
+import com.example.todo.Fragment.ManageAcountFragment;
 import com.example.todo.Fragment.MenuFragment;
 
 public class TabFragmentAdapter extends FragmentStateAdapter {
@@ -20,6 +21,8 @@ public class TabFragmentAdapter extends FragmentStateAdapter {
         switch (position){
             case 1:
                 return new MenuFragment();
+            case 2:
+                return new ManageAcountFragment();
         }
 
         return new HomeFragment();

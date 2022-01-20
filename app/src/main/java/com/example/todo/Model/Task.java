@@ -18,6 +18,7 @@ public class Task {
     String process;;
     String timeComplete;
     String note;
+    String idListTask;
     Map<String, List<String>> listShare;
 
     public String getTaskID() {
@@ -31,6 +32,14 @@ public class Task {
     String taskID;
 
     public Task() {
+    }
+
+    public String getIdListTask() {
+        return idListTask;
+    }
+
+    public void setIdListTask(String idListTask) {
+        this.idListTask = idListTask;
     }
 
     public Task(String taskName) {

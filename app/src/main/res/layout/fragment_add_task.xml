@@ -225,7 +225,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/bg_button_dark"
+            android:background="@drawable/bg_button"
             android:textColor="@color/white"
             android:layout_margin="3dp"
             android:text="@string/save"/>

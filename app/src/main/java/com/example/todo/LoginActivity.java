@@ -100,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void clickForgotPassword(View view){
         Dialog mDialog;
         mDialog=new Dialog(LoginActivity.this);

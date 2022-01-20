@@ -123,14 +123,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/bg_button_dark"
+                android:background="@drawable/bg_button"
                 android:textColor="@color/white"
                 android:text="@string/btn_cancle" />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_button_dark"
+                android:background="@drawable/bg_button"
                 android:textColor="@color/white"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
@@ -140,7 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/bg_button_dark"
+                android:background="@drawable/bg_button"
                 android:textColor="@color/white"
                 android:text="@string/delete" />
 

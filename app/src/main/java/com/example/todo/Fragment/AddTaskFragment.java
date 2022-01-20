@@ -2,7 +2,6 @@ package com.example.todo.Fragment;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -29,11 +28,9 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.todo.MUtils;
-import com.example.todo.MainActivity;
 import com.example.todo.Model.Task;
 import com.example.todo.Model.User;
 import com.example.todo.R;
-import com.example.todo.SignUpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -45,14 +42,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.Executor;
 
 public class AddTaskFragment extends Fragment {
 

@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnAddTimeTable"
                 android:textColor="@color/white"
-                android:background="@drawable/bg_button_dark"
+                android:background="@drawable/bg_button"
                 android:text="@string/btn_add_timetable"
                 />
         </LinearLayout>
