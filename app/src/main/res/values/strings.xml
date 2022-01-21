@@ -1,4 +1,5 @@
 <resources>
+    <!-- Login - SignUp Activity-->
     <string name="app_name">ToDo</string>
     <string name="btn_login">Đăng nhập</string>
     <string name="btn_sign_up">Đăng kí</string>
@@ -15,15 +16,18 @@
     <string name="sign_up_success">Đăng kí thành công!</string>
     <string name="sign_up_fail">Đăng kí không thành công!</string>
     <string name="login_failed">Đăng nhập không thành công</string>
+    <string name="enter_your_email">Nhập email đăng kí tài khoản của bạn:</string>
+    <!-- Main activity, Home + Menu Fragment-->
     <string name="tab_home">Trang chủ</string>
-    <string name="tab_menu">Tiện ích</string>
+    <string name="tab_menu">Lập kế hoạch</string>
     <string name="task_name">Tên công việc</string>
-    <string name="task_deadline">1/1/1999</string>
-    <string name="task_process">(0/0)</string>
+    <string name="task_deadline_default">1/1/1999</string>
+    <string name="task_process_default">(0/0)</string>
     <string name="task_end_day">Ngày hết hạn: </string>
     <string name="menu_timetable">Thời khóa biểu</string>
-    <string name="menu_task">Công việc của tôi</string>
-    <string name="menu_water">Nhắc uống nước</string>
+    <string name="menu_task">Tất cả công việc</string>
+    <string name="menu_note">Ghi chú</string>
+    <string name="menu_add">Tạo danh sách công việc mới</string>
     <string name="menu_share_task">Công việc được giao</string>
     <string name="menu_other">Tiện ích khác</string>
     <string name="menu_statistics">Thống kê</string>
@@ -43,7 +47,7 @@
     <string name="saturday">Thứ bảy</string>
     <string name="sunday">Chủ nhật</string>
 
-    
+
     <!-- Fragment thêm thời khóa biểu -->
     <string name="subject">Tên môn học</string>
     <string name="duration">Thời gian:</string>
@@ -52,22 +56,40 @@
     <string name="day_of_week">Thứ:</string>
     <string name="empty_subject">Chưa nhập tên môn học!</string>
     <string name="empty_classroom">Chưa nhập phòng học!</string>
-    <string name="btn_cancle">Đóng</string>
+    <string name="btn_cancel">Đóng</string>
     <string name="update_success">Đã lưu thay đổi!</string>
     <string name="update_fail">Lỗi!</string>
     <string name="duration_error">Thời gian kết thúc nhỏ hơn thời gian bắt đầu!</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
 
-    <string-array name="spinner_choices">
-        <item>Thứ 2</item>
-        <item>Thứ 3</item>
-        <item>Thứ 4</item>
-        <item>Thứ 5</item>
-        <item>Thứ 6</item>
-        <item>Thứ 7</item>
-        <item>Chủ Nhật</item>
-    </string-array>
+    <!-- Range -->
+    <string name="today">Hôm nay</string>
+    <string name="tomorrow">Ngày mai</string>
+    <string name="week">Tuần này</string>
+    <string name="expired"> Đã hết hạn</string>
+    <string name="all_task">Tất cả</string>
+    <string name="completed">Đã hoàn thành</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="todo">TODO</string>
+    <string name="add_sub_task">Thêm tác vụ</string>
+    <string name="remind">Nhắc nhở</string>
+    <string name="deadline">Ngày đến hạn</string>
+    <string name="share_task">Chia sẻ công việc</string>
+    <string name="note">Ghi chú</string>
+    <string name="btn_send">Gửi</string>
+    <string name="select_day">Chọn ngày:</string>
+    <string name="select_time">Chọn giờ:</string>
+    <string name="enter_friend_email">Nhập email của bạn bè:</string>
+    <string name="note_share_email">(mỗi email cách nhau bởi dấu phẩy)</string>
+    <string name="num_people_default">2 người</string>
+    <string name="shared_with">Đã chia sẻ với: </string>
+    <string name="empty_task_name">Chưa nhập tên công việc!</string>
+    <string name="setting">Cài đặt</string>
+    <string name="hello_default">Chào buổi sáng,</string>
+    <string name="profile">Cá nhân</string>
+    <string name="list_name">Tên dánh sách:</string>
+    <string name="select_icon">Chọn icon</string>
+
+
 </resources>

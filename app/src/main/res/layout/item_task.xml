@@ -4,51 +4,101 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="8dp"
-    android:layout_margin="10dp">
+    android:layout_margin="5dp">
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp">
+
+        <CheckBox
+            android:id="@+id/cbIsCompleted"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:buttonTint="@color/dark_color"
+            android:checked="false" />
+
         <TextView
             android:id="@+id/tvTaskName"
-            android:padding="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_name"/>
-        <TextView
-            android:id="@+id/tvProcess"
-            android:padding="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_toEndOf="@+id/cbIsCompleted"
+            android:fontFamily="@font/opensans_semicondensed_semi_bold"
+            android:paddingTop="3dp"
+            android:text="@string/task_name"
+            android:textColor="@color/black" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/tvProcess"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_toEndOf="@id/tvTaskName"-->
+<!--            android:padding="3dp"-->
+<!--            android:text="@string/task_process_default" />-->
+
+        <ImageView
+            android:id="@+id/icon1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/tvTaskName"
-            android:text="@string/task_process"
-            android:layout_marginLeft="5dp"
-            />
+            android:paddingTop="5dp"
+            android:src="@drawable/ic_baseline_people_24"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/iconImportant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="3dp"
+            android:src="@drawable/ic_baseline_star_border_24" />
+
+
         <ImageView
             android:id="@+id/iconCalendar"
             android:layout_width="14dp"
             android:layout_height="14dp"
-            android:padding="3dp"
+            android:layout_below="@id/tvTaskName"
+            android:layout_marginStart="3dp"
             android:layout_marginTop="6dp"
-            android:src="@drawable/ic_baseline_calendar_today_24"
-            android:layout_below="@id/tvTaskName"/>
+            android:layout_toEndOf="@+id/cbIsCompleted"
+            android:padding="3dp"
+            android:src="@drawable/ic_baseline_calendar_today_24" />
 
         <TextView
             android:id="@+id/tvEndDay"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/task_end_day"
-            android:padding="3dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/tvTaskName"
-            android:layout_toEndOf="@id/iconCalendar"/>
+            android:layout_toEndOf="@id/iconCalendar"
+            android:padding="3dp"
+            android:text="@string/task_end_day" />
 
         <TextView
             android:id="@+id/tvDeadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:layout_toEndOf="@id/tvEndDay"
             android:layout_below="@id/tvTaskName"
-            android:text="@string/task_deadline" />
+            android:layout_toEndOf="@id/tvEndDay"
+            android:padding="3dp"
+            android:text="@string/task_deadline_default" />
+
+        <ImageView
+            android:id="@+id/icon2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:paddingTop="5dp"
+            android:layout_toEndOf="@id/icon1"
+            android:src="@drawable/ic_baseline_notifications_24"
+            android:visibility="invisible" />
+
 
     </RelativeLayout>
 

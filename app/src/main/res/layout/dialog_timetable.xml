@@ -2,7 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog"
+    android:padding="15dp"
+    android:layout_margin="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,13 +16,15 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:hint="@string/subject"
-            app:boxBackgroundColor="#fff">
+            app:boxBackgroundColor="@color/bg_color">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editSubjects"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaa_regular"
                 android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -27,13 +32,15 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/subject"
-            app:boxBackgroundColor="#fff">
+            android:layout_marginTop="5dp"
+            android:hint="@string/classroom"
+            app:boxBackgroundColor="@color/bg_color">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editClassroom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaa_regular"
                 android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -41,32 +48,40 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:background="@color/bg_color"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/comfortaa_regular"
                 android:text="@string/day_of_week"
                 android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/editSpinnerDOF"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:theme="@style/SpinnerTheme"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:background="@color/bg_color"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:fontFamily="@font/comfortaa_regular"
+                android:textColor="@color/black"
                 android:text="@string/duration"
                 android:textSize="16sp" />
 
@@ -75,6 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:fontFamily="@font/comfortaa_regular"
                 android:text="9:30"
                 android:textSize="16sp" />
 
@@ -88,6 +104,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/comfortaa_regular"
                 android:text="đến"
                 android:textSize="16sp" />
 
@@ -96,6 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:fontFamily="@font/comfortaa_regular"
                 android:text="9:30"
                 android:textSize="16sp" />
 
@@ -110,28 +129,33 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:layout_marginTop="5dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
-            <Button
-                android:id="@+id/btnCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="@string/btn_cancle" />
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_button"
+                android:fontFamily="@font/comfortaa_bold"
                 android:text="@string/save" />
             <Button
                 android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_button"
+                android:fontFamily="@font/comfortaa_bold"
                 android:text="@string/delete" />
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_button"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="@string/btn_cancel" />
 
 
         </LinearLayout>
