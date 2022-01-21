@@ -56,7 +56,7 @@
     <string name="day_of_week">Thứ:</string>
     <string name="empty_subject">Chưa nhập tên môn học!</string>
     <string name="empty_classroom">Chưa nhập phòng học!</string>
-    <string name="btn_cancle">Đóng</string>
+    <string name="btn_cancel">Đóng</string>
     <string name="update_success">Đã lưu thay đổi!</string>
     <string name="update_fail">Lỗi!</string>
     <string name="duration_error">Thời gian kết thúc nhỏ hơn thời gian bắt đầu!</string>

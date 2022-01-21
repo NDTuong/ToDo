@@ -23,6 +23,7 @@ public class ChooseIconAdapter extends RecyclerView.Adapter<ChooseIconAdapter.Ch
 
     public void setData(int[] listIcon) {
         this.listIcon = listIcon;
+        Log.d("TYPE", "setData: " + listIcon.length);
         notifyDataSetChanged();
 
     }

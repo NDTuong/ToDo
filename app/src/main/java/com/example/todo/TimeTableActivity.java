@@ -8,32 +8,25 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.todo.Fragment.AddTimeTableFragment;
+import com.example.todo.Adapter.TimeTableAdapter;
 import com.example.todo.Model.DayOfWeek;
 import com.example.todo.Model.TimeTable;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,22 +42,22 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TimeTableActivity extends AppCompatActivity {
-
-    // Các hàng của bảng Thời khóa biểu
-    TableRow rowMonday, rowTuesday, rowWednesday, rowThursday, rowFriday, rowSaturday, rowSunday;
-
+public class TimeTableActivity extends AppCompatActivity implements SelectListener {
     FloatingActionButton fabAddTimeTable;
-    ConstraintLayout constraintLayout;
-    LinearLayout linearLayoutTimeTable;
     ImageView ivBack2Menu;
-
-    private DatabaseReference dbTimeTable;
-    private FirebaseAuth mAuth;
-
-    String UID;
     int t1Hour, t1Minute, t2Hour, t2Minute;
     int count = 0;
+    ArrayList<TimeTable> timeTableMon = new ArrayList<TimeTable>();
+    ArrayList<TimeTable> timeTableTue = new ArrayList<TimeTable>();
+    ArrayList<TimeTable> timeTableWed = new ArrayList<TimeTable>();
+    ArrayList<TimeTable> timeTableThur = new ArrayList<TimeTable>();
+    ArrayList<TimeTable> timeTableFri = new ArrayList<TimeTable>();
+    ArrayList<TimeTable> timeTableSat = new ArrayList<TimeTable>();
+    ArrayList<TimeTable> timeTableSun = new ArrayList<TimeTable>();
+    ArrayList<TimeTable> timeTable = new ArrayList<TimeTable>();
+    private DatabaseReference dbTimeTable;
+    private FirebaseAuth mAuth;
+    private String UID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,174 +70,36 @@ public class TimeTableActivity extends AppCompatActivity {
         if (currentUser != null) {
             UID = currentUser.getUid();
         }
-
-        // Kết nối database
-        dbTimeTable = FirebaseDatabase.getInstance().getReference(UID);
-
-        // Set sự kiện khi click fab
-        fabAddTimeTable = findViewById(R.id.fabAddTimeTable);
-        fabAddTimeTable.setOnClickListener(v -> {
-            fabAddTimeTable.setVisibility(View.GONE);
-            loadFragment(new AddTimeTableFragment());
-        });
-
-
-
-        // Đóng fragment thêm thời khóa biểu khi click ra ngoài
-        //constraintLayout = findViewById(R.id.constraintLayout);
-        //constraintLayout.setOnClickListener(v -> closeFragment(v));
-        //linearLayoutTimeTable = findViewById(R.id.linearLayoutTimeTable);
-        //linearLayoutTimeTable.setOnClickListener(v -> closeFragment(v));
-
-
-        // Quay lại MenuFragment
-        ivBack2Menu = findViewById(R.id.iconBack2Menu);
-        ivBack2Menu.setOnClickListener(v -> finish());
-
-        rowMonday = findViewById(R.id.rowMonday);
-        rowTuesday = findViewById(R.id.rowTuesday);
-        rowWednesday = findViewById(R.id.rowWednesday);
-        rowThursday = findViewById(R.id.rowThursday);
-        rowFriday = findViewById(R.id.rowFriday);
-        rowSaturday = findViewById(R.id.rowSaturday);
-        rowSunday = findViewById(R.id.rowSunday);
-
-        // Lấy dữ liệu từ database và hiển thị
-        getTimeTableAndShow(dbTimeTable);
-
-    }
-
-    // [START] Kiểm tra đã đăng nhập chưa?
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             Intent intent = new Intent(TimeTableActivity.this, LoginActivity.class);
             startActivity(intent);
         }
-    }
-    // [END]
 
-    // khi bấm quay lại mà có fagment thì đóng
-    @Override
-    public void onBackPressed() {
-        if (count >= 1) {
-            View v = this.getCurrentFocus();
-            closeFragment(v);
-            count = 0;
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    // Hàm load fragment
-    private void loadFragment(Fragment fragment) {
-        // create a FragmentManager
-        FragmentManager fm = getSupportFragmentManager();
-        // create a FragmentTransaction to begin the transaction and replace the Fragment
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        // replace the FrameLayout with new Fragment
-        fragmentTransaction.replace(R.id.frameLayout, fragment, "AddTimeTable");
-        fragmentTransaction.commit(); // save the changes
-        count++;
-    }
-
-    // Hàm ẩn bàn phím
-    private void hideKeyboard(View v) {
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
-    }
-
-    // Hàm đóng fragment
-    private void closeFragment(View v) {
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentByTag("AddTimeTable");
-        if (fragment != null) {
-            hideKeyboard(v);
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.remove(fragment);
-            fragmentTransaction.commit();
-            fabAddTimeTable.setVisibility(View.VISIBLE);
-        }
-    }
-
-    // Hàm set textview ở linear layout thời khóa biểu từng môn
-    private void setTextView2Layout(String text, LinearLayout linearLayout) {
-        TextView textView = new TextView(this);
-        textView.setText(text);
-        textView.setGravity(1);
-        if(!text.equals(" "))
-            textView.setPadding(5,0,5,0);
-        linearLayout.addView(textView);
-    }
-
-    // Hàm hiển từng môn học trên thời khóa biểu
-    private void showTimeTable(TimeTable timeTable) {
-        LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setBackgroundColor(Color.parseColor("#8bf6ff"));
-        linearLayout.setPadding(5, 13, 5, 14);
-
-        LinearLayout linearLayout2 = new LinearLayout(this);
-        linearLayout2.setBackgroundColor(Color.parseColor("#ffffff"));
-
-        DayOfWeek d = timeTable.getDay();
-        switch (d) {
-            case MON:
-                rowMonday.addView(linearLayout);
-                rowMonday.addView(linearLayout2);
-                break;
-            case TUE:
-                rowTuesday.addView(linearLayout);
-                break;
-            case WED:
-                rowWednesday.addView(linearLayout);
-                break;
-            case THU:
-                rowThursday.addView(linearLayout);
-                break;
-            case FRI:
-                rowFriday.addView(linearLayout);
-                break;
-            case SAT:
-                rowSaturday.addView(linearLayout);
-                break;
-            case SUN:
-                rowSunday.addView(linearLayout);
-                break;
-        }
-
-        setTextView2Layout(timeTable.getSubject(), linearLayout);
-        setTextView2Layout(timeTable.getDuration(), linearLayout);
-        setTextView2Layout(timeTable.getLocation(), linearLayout);
-        setTextView2Layout(" ", linearLayout2);
-        linearLayout.setOnLongClickListener(v -> {
-            openEditTimeTableDialog(timeTable, linearLayout);
-            return false;
-        });
-    }
-
-    // Hàm lấy dữ liệu thời khóa biểu từ database và hiển thị
-    private void getTimeTableAndShow(DatabaseReference db) {
-        ArrayList<TimeTable> listTimeTable = new ArrayList<TimeTable>();
-        db.child("time_table").addValueEventListener(new ValueEventListener() {
+        // Quay lại MenuFragment
+        ivBack2Menu = findViewById(R.id.ivBack2Menu);
+        ivBack2Menu.setOnClickListener(v -> finish());
+        //showTimeTable();
+        // Kết nối database
+        dbTimeTable = FirebaseDatabase.getInstance().getReference(UID);
+        createData();
+        dbTimeTable.child("time_table").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     TimeTable mTimeTable = snapshot.getValue(TimeTable.class);
-                    assert mTimeTable != null;
-                    if (listTimeTable.contains(mTimeTable)) {
-                        continue;
-                    }
-                    if (checkUpdateTimeTable(mTimeTable, listTimeTable)) {
-                        showTimeTable(mTimeTable);
-                        continue;
-                    }
-                    listTimeTable.add(mTimeTable);
-                    showTimeTable(mTimeTable);
+                    addTb2List(mTimeTable);
+
                 }
+//                Log.d("TYPE", "onDataChange2: " + timeTableMon);
+//                Log.d("TYPE", "onDataChange3: " + timeTableTue);
+//                Log.d("TYPE", "onDataChange4: " + timeTableWed);
+//                Log.d("TYPE", "onDataChange5: " + timeTableThur);
+//                Log.d("TYPE", "onDataChange6: " + timeTableFri);
+//                Log.d("TYPE", "onDataChange7: " + timeTableSat);
+//                Log.d("TYPE", "onDataChange8: " + timeTableSun);
+//                Log.d("TYPE", "==========================================");
+                showTimeTable();
+
             }
 
             @Override
@@ -252,39 +107,131 @@ public class TimeTableActivity extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+
+        // Set sự kiện khi click fab
+        fabAddTimeTable = findViewById(R.id.fabAddTimeTable);
+        fabAddTimeTable.setOnClickListener(v -> {
+            openEditTimeTbDialog(new TimeTable(), 1);
+        });
     }
 
-    // Mở Dialog sửa thời khóa biểu
-    private void openEditTimeTableDialog(TimeTable timeTable, LinearLayout linearLayout) {
-        final Dialog editDialog = new Dialog(this);
+    private void showTimeTable() {
+        RecyclerView rcvMon = findViewById(R.id.rcvMon);
+        TimeTableAdapter timeTableAdapterMon = new TimeTableAdapter(TimeTableActivity.this);
+        LinearLayoutManager linearLayoutManagerMon = new LinearLayoutManager(TimeTableActivity.this, RecyclerView.HORIZONTAL, false);
+        rcvMon.setLayoutManager(linearLayoutManagerMon);
+        timeTableAdapterMon.setData(timeTableMon, this);
+        rcvMon.setAdapter(timeTableAdapterMon);
 
-        // Đóng fragment thêm thời khóa biểu nếu đang tồn tại
-        ViewGroup parent = (ViewGroup) linearLayout.getParent();
-        closeFragment(parent);
+        RecyclerView rcvTue = findViewById(R.id.rcvTue);
+        TimeTableAdapter timeTableAdapterTue = new TimeTableAdapter(TimeTableActivity.this);
+        LinearLayoutManager linearLayoutManagerTue = new LinearLayoutManager(TimeTableActivity.this, RecyclerView.HORIZONTAL, false);
+        rcvTue.setLayoutManager(linearLayoutManagerTue);
+        timeTableAdapterTue.setData(timeTableTue, this);
+        rcvTue.setAdapter(timeTableAdapterTue);
+
+        RecyclerView rcvWed = findViewById(R.id.rcvWed);
+        TimeTableAdapter timeTableAdapterWed = new TimeTableAdapter(TimeTableActivity.this);
+        LinearLayoutManager linearLayoutManagerWed = new LinearLayoutManager(TimeTableActivity.this, RecyclerView.HORIZONTAL, false);
+        rcvWed.setLayoutManager(linearLayoutManagerWed);
+        timeTableAdapterWed.setData(timeTableWed, this);
+        rcvWed.setAdapter(timeTableAdapterWed);
+
+        RecyclerView rcvThur = findViewById(R.id.rcvThur);
+        TimeTableAdapter timeTableAdapterThur = new TimeTableAdapter(TimeTableActivity.this);
+        LinearLayoutManager linearLayoutManagerThur = new LinearLayoutManager(TimeTableActivity.this, RecyclerView.HORIZONTAL, false);
+        rcvThur.setLayoutManager(linearLayoutManagerThur);
+        timeTableAdapterThur.setData(timeTableThur, this);
+        rcvThur.setAdapter(timeTableAdapterThur);
+
+        RecyclerView rcvFri = findViewById(R.id.rcvFri);
+        TimeTableAdapter timeTableAdapterFri = new TimeTableAdapter(TimeTableActivity.this);
+        LinearLayoutManager linearLayoutManagerFri = new LinearLayoutManager(TimeTableActivity.this, RecyclerView.HORIZONTAL, false);
+        rcvFri.setLayoutManager(linearLayoutManagerFri);
+        timeTableAdapterFri.setData(timeTableFri, this);
+        rcvFri.setAdapter(timeTableAdapterFri);
+
+        RecyclerView rcvSat = findViewById(R.id.rcvSat);
+        TimeTableAdapter timeTableAdapterSat = new TimeTableAdapter(TimeTableActivity.this);
+        LinearLayoutManager linearLayoutManagerSat = new LinearLayoutManager(TimeTableActivity.this, RecyclerView.HORIZONTAL, false);
+        rcvSat.setLayoutManager(linearLayoutManagerSat);
+        timeTableAdapterSat.setData(timeTableSat, this);
+        rcvSat.setAdapter(timeTableAdapterSat);
+
+        RecyclerView rcvSun = findViewById(R.id.rcvSun);
+        TimeTableAdapter timeTableAdapterSun = new TimeTableAdapter(TimeTableActivity.this);
+        LinearLayoutManager linearLayoutManagerSun = new LinearLayoutManager(TimeTableActivity.this, RecyclerView.HORIZONTAL, false);
+        rcvSun.setLayoutManager(linearLayoutManagerSun);
+        timeTableAdapterSun.setData(timeTableSun, this);
+        rcvSun.setAdapter(timeTableAdapterSun);
+    }
+
+    private void addTb2List(TimeTable t) {
+        DayOfWeek d = t.getDay();
+        switch (d) {
+            case MON:
+                timeTableMon.add(t);
+                break;
+            case TUE:
+                timeTableTue.add(t);
+                break;
+            case WED:
+                timeTableWed.add(t);
+                break;
+            case THU:
+                timeTableThur.add(t);
+                break;
+            case FRI:
+                timeTableFri.add(t);
+                break;
+            case SAT:
+                timeTableSat.add(t);
+                break;
+            case SUN:
+                timeTableSun.add(t);
+                break;
+        }
+    }
+
+    @Override
+    public void onItemClicked(TimeTable tb) {
+        openEditTimeTbDialog(tb, 0);
+    }
+//    // Hàm ẩn bàn phím
+//    private void hideKeyboard(View v) {
+//        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+//        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
+//    }
+    public void openEditTimeTbDialog(TimeTable timeTable, int flags) {
+        final Dialog editDialog = new Dialog(this);
+        String idTimeTable = "";
 
         editDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         editDialog.setContentView(R.layout.dialog_timetable);
+
         Window window = editDialog.getWindow();
         if (window != null) {
             window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             WindowManager.LayoutParams windowAttributes = window.getAttributes();
+
             //Set vị trí cho dialog
             windowAttributes.gravity = Gravity.CENTER;
             window.setAttributes(windowAttributes);
 
+            TextView tvEditTimeStart = editDialog.findViewById(R.id.tvEditTimeStart);
+            TextView tvEditTimeEnd = editDialog.findViewById(R.id.tvEditTimeEnd);
+            ImageView ivEditTimeStart = editDialog.findViewById(R.id.ivEditTimeStart);
+            ImageView ivEditTimeEnd = editDialog.findViewById(R.id.ivEditTimeEnd);
+            Button btnCancel = editDialog.findViewById(R.id.btnCancel);
+            Button btnDelete = editDialog.findViewById(R.id.btnDelete);
+            TextInputEditText subject = editDialog.findViewById(R.id.editSubjects);
+            TextInputEditText classroom = editDialog.findViewById(R.id.editClassroom);
+
             //click ra ngoài sẽ tắt dialog
             editDialog.setCancelable(true);
 
-            // Sửa tên môn học
-            TextInputEditText subject = editDialog.findViewById(R.id.editSubjects);
-            subject.setText(timeTable.getSubject());
-
-            // Sửa phòng học
-            TextInputEditText classroom = editDialog.findViewById(R.id.editClassroom);
-            classroom.setText(timeTable.getLocation());
-
-            // Sửa thứ
+            // thứ
             // Add item for spinner
             ArrayList<String> arrayListDoW = new ArrayList<>();
             arrayListDoW.add(getString(R.string.monday));
@@ -298,40 +245,55 @@ public class TimeTableActivity extends AppCompatActivity {
             Spinner spinnerDOF = editDialog.findViewById(R.id.editSpinnerDOF);
 
             // Creating adapter for spinner
-            ArrayAdapter<String> arrayAdapterDoW = new ArrayAdapter<>(TimeTableActivity.this, R.layout.support_simple_spinner_dropdown_item, arrayListDoW);
+            ArrayAdapter<String> arrayAdapterDoW = new ArrayAdapter<>(TimeTableActivity.this, R.layout.spinner_selected_item, arrayListDoW);
 
             // Drop down layout style - list view with radio button
             arrayAdapterDoW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             // attaching data adapter to spinner
             spinnerDOF.setAdapter(arrayAdapterDoW);
-            int position = arrayListDoW.indexOf(DOF2String(timeTable.getDay()));
-            spinnerDOF.setSelection(position);
-
-            // Sửa giờ học
-            String duration = timeTable.getDuration();
-            String[] startEnd = duration.split("-");
-
-            TextView tvEditTimeStart = editDialog.findViewById(R.id.tvEditTimeStart);
-            tvEditTimeStart.setText(startEnd[0].trim());
-            tvEditTimeStart.setOnClickListener(v -> showTimePicker(v, t1Hour, t1Minute, tvEditTimeStart));
-
-            TextView tvEditTimeEnd = editDialog.findViewById(R.id.tvEditTimeEnd);
-            tvEditTimeEnd.setText(startEnd[1].trim());
-            tvEditTimeEnd.setOnClickListener(v -> showTimePicker(v, t2Hour, t2Minute, tvEditTimeEnd));
-
-            ImageView ivEditTimeStart = editDialog.findViewById(R.id.ivEditTimeStart);
-            ivEditTimeStart.setOnClickListener(v -> showTimePicker(v, t1Hour, t1Minute, tvEditTimeStart));
-
-            ImageView ivEditTimeEnd = editDialog.findViewById(R.id.ivEditTimeEnd);
-            ivEditTimeEnd.setOnClickListener(v -> showTimePicker(v, t2Hour, t2Minute, tvEditTimeEnd));
 
             // Tắt dialog sửa thời khóa biểu khi bấm cancel
-            Button btnCancel = editDialog.findViewById(R.id.btnCancel);
             btnCancel.setOnClickListener(v -> editDialog.dismiss());
+            if (flags == 0) {
+                idTimeTable = timeTable.getKey();
+                int position = arrayListDoW.indexOf(DOF2String(timeTable.getDay()));
+                spinnerDOF.setSelection(position);
+                // Đặt tên môn học
+                subject.setText(timeTable.getSubject());
+                // Đặt phòng học
+                classroom.setText(timeTable.getLocation());
+                // Đặt giờ học
+                String duration = timeTable.getDuration();
+                String[] startEnd = duration.split("-");
+                tvEditTimeStart.setText(startEnd[0].trim());
+                tvEditTimeEnd.setText(startEnd[1].trim());
+                // xóa lịch học
+                btnDelete.setOnClickListener(v -> {
+                    dbTimeTable.child("time_table").child(timeTable.getKey()).removeValue()
+                            .addOnSuccessListener(unused ->
+                            {
+                                Toast.makeText(editDialog.getContext(), R.string.update_success, Toast.LENGTH_SHORT).show();
+                            })
+                            .addOnFailureListener(e ->
+                                    Toast.makeText(editDialog.getContext(), R.string.update_fail, Toast.LENGTH_SHORT).show());
+                    clearData();
+                    editDialog.dismiss();
+                });
+            }
+
+            if (flags == 1) {
+                btnDelete.setVisibility(View.GONE);
+                idTimeTable = dbTimeTable.push().getKey();
+            }
+            tvEditTimeEnd.setOnClickListener(v -> showTimePicker(v, t2Hour, t2Minute, tvEditTimeEnd));
+            ivEditTimeEnd.setOnClickListener(v -> showTimePicker(v, t2Hour, t2Minute, tvEditTimeEnd));
+            ivEditTimeStart.setOnClickListener(v -> showTimePicker(v, t1Hour, t1Minute, tvEditTimeStart));
+            tvEditTimeStart.setOnClickListener(v -> showTimePicker(v, t1Hour, t1Minute, tvEditTimeStart));
 
             // Lưu thời khóa biểu mới khi ấn save
             Button btnSave = editDialog.findViewById(R.id.btnSave);
+            String finalIdTimeTable = idTimeTable;
             btnSave.setOnClickListener(v -> {
                 String mSubject = subject.getText().toString().trim();
                 String mClassroom = classroom.getText().toString().trim();
@@ -339,7 +301,6 @@ public class TimeTableActivity extends AppCompatActivity {
                 String startTime = tvEditTimeStart.getText().toString();
                 String endTime = tvEditTimeEnd.getText().toString();
                 String duration1 = startTime + " - " + endTime;
-                String idTimeTable = timeTable.getKey();
 
                 if (TextUtils.isEmpty(mSubject)) {
                     Toast.makeText(editDialog.getContext(), R.string.empty_subject, Toast.LENGTH_SHORT).show();
@@ -353,42 +314,28 @@ public class TimeTableActivity extends AppCompatActivity {
                 int t2 = Integer.parseInt(endTime.split(":")[0]);
                 int m1 = Integer.parseInt(startTime.split(":")[1]);
                 int m2 = Integer.parseInt(endTime.split(":")[1]);
-                if (t1 > t2){
+                if (t1 > t2) {
                     Toast.makeText(editDialog.getContext(), R.string.duration_error, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (t1 == t2 && m1 > m2){
+                if (t1 == t2 && m1 > m2) {
                     Toast.makeText(editDialog.getContext(), R.string.duration_error, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Lưu thông tin vào database
-                TimeTable newTimeTable = new TimeTable(mSubject, mClassroom, convert2DOF(day), duration1, idTimeTable);
+                TimeTable newTimeTable = new TimeTable(mSubject, mClassroom, convert2DOF(day), duration1, finalIdTimeTable);
                 if (!newTimeTable.equals(timeTable)) {
                     Map<String, Object> childUpdates = new HashMap<>();
-                    childUpdates.put("time_table" + "/" + idTimeTable, newTimeTable);
-                    dbTimeTable.updateChildren(childUpdates).addOnSuccessListener(unused -> Toast.makeText(editDialog.getContext(),R.string.update_success, Toast.LENGTH_SHORT).show())
-                            .addOnFailureListener(e -> Toast.makeText(editDialog.getContext(),R.string.update_fail, Toast.LENGTH_SHORT).show());
-                    subject.setText("");
-                    classroom.setText("");
-                    // Xóa layout lưu thông tin lịch học cũ nếu có update
-                    parent.removeView(linearLayout);
+                    childUpdates.put("time_table" + "/" + finalIdTimeTable, newTimeTable);
+                    dbTimeTable.updateChildren(childUpdates).addOnSuccessListener(unused -> Toast.makeText(editDialog.getContext(), R.string.update_success, Toast.LENGTH_SHORT).show())
+                            .addOnFailureListener(e -> Toast.makeText(editDialog.getContext(), R.string.update_fail, Toast.LENGTH_SHORT).show());
+                    //subject.setText("");
+                    //classroom.setText("");
+                    clearData();
                 }
                 // Đóng dialog
                 editDialog.dismiss();
             });
-
-            // xóa lịch học
-            Button btnDelete = editDialog.findViewById(R.id.btnDelete);
-            btnDelete.setOnClickListener(v -> {
-                dbTimeTable.child(UID).child(timeTable.getKey()).removeValue()
-                .addOnSuccessListener(unused ->
-                    Toast.makeText(editDialog.getContext(),R.string.update_success, Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e ->
-                    Toast.makeText(editDialog.getContext(),R.string.update_fail, Toast.LENGTH_SHORT).show());
-                parent.removeView(linearLayout);
-                editDialog.dismiss();
-            });
-
             //show dialog
             editDialog.show();
         }
@@ -398,7 +345,7 @@ public class TimeTableActivity extends AppCompatActivity {
     private void showTimePicker(View v, int hour, int minute, TextView tv) {
         final int[] h = {hour};
         final int[] m = {minute};
-        TimePickerDialog timePickerDialog = new TimePickerDialog(v.getContext(),R.style.MyTimePickerDialogStyle,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(v.getContext(), R.style.MyTimePickerDialogStyle,
                 (view, hourOfDay, minute1) -> {
                     //Initialize hour and minute
                     h[0] = hourOfDay;
@@ -438,7 +385,7 @@ public class TimeTableActivity extends AppCompatActivity {
     }
 
     // Hàm chuyển từ giá trị Enum sang String
-    private String DOF2String(DayOfWeek d){
+    private String DOF2String(DayOfWeek d) {
         if (d.equals(DayOfWeek.MON)) {
             return getString(R.string.monday);
         }
@@ -460,27 +407,25 @@ public class TimeTableActivity extends AppCompatActivity {
         return getString(R.string.sunday);
     }
 
-    // Kiểm tra có môn học nào được update lịch học không?
-    private boolean checkUpdateTimeTable(TimeTable t, ArrayList<TimeTable> l) {
-        for (TimeTable lt : l) {
-            if (t.getKey().equals(lt.getKey())) {
-                if (!t.getDay().equals(lt.getDay())) {
-                    lt.setDay(t.getDay());
-                    return true;
-                }
-                if (!t.getDuration().equals(lt.getDuration())) {
-                    lt.setDuration(t.getDuration());
-                }
-                if (!t.getLocation().equals(lt.getLocation())) {
-                    lt.setLocation(t.getLocation());
-                }
-                if (!t.getSubject().equals(lt.getSubject())) {
-                    lt.setSubject(t.getSubject());
-                }
+    private void createData() {
+        TimeTable t2 = new TimeTable(".", ".", DayOfWeek.MON, ".", ".");
+        timeTableMon.add(t2);
+        timeTableTue.add(t2);
+        timeTableWed.add(t2);
+        timeTableThur.add(t2);
+        timeTableFri.add(t2);
+        timeTableSat.add(t2);
+        timeTableSun.add(t2);
+    }
 
-                return true;
-            }
-        }
-        return false;
+    private void clearData() {
+        timeTableMon.clear();
+        timeTableTue.clear();
+        timeTableWed.clear();
+        timeTableThur.clear();
+        timeTableFri.clear();
+        timeTableSat.clear();
+        timeTableSun.clear();
+        createData();
     }
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="@color/bg_color"
     tools:context=".Fragment.AddTimeTableFragment">
 
     <LinearLayout
@@ -16,13 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:hint="@string/subject"
-            app:boxBackgroundColor="#fff">
+            android:hint="@string/subject">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/subjects"
+                android:background="@color/bg_color"
+                android:fontFamily="@font/comfortaa_regular"
                 android:lines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -30,14 +31,15 @@
             android:id="@+id/textFieldClassromm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/classroom"
-            app:boxBackgroundColor="#fff">
+            android:hint="@string/classroom">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:id="@+id/classroom"
+                android:background="@color/bg_color"
+                android:fontFamily="@font/comfortaa_regular"
                 android:lines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -53,19 +55,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/day_of_week"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/comfortaa_bold"
                 android:textSize="16sp"
                 android:layout_marginStart="15dp"/>
             <Spinner
                 android:id="@+id/spinnerDOF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/SpinnerTheme"
                  />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="#fff"
             android:orientation="horizontal"
             >
             <TextView
@@ -73,12 +77,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/duration"
                 android:textSize="16sp"
+                android:fontFamily="@font/comfortaa_bold"
                 android:layout_marginStart="15dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvTimeStart"
                 android:text="9:30"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textSize="16sp"
                 android:layout_marginStart="15dp"/>
             <ImageView
@@ -90,6 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="đến"
+                android:fontFamily="@font/comfortaa_bold"
                 android:textSize="16sp"
                 android:layout_marginStart="15dp"/>
             <TextView
@@ -97,6 +104,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvTimeEnd"
                 android:text="9:30"
+                android:fontFamily="@font/comfortaa_regular"
                 android:textSize="16sp"
                 android:layout_marginStart="15dp"/>
             <ImageView
@@ -111,7 +119,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
@@ -120,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnAddTimeTable"
                 android:textColor="@color/white"
+                android:fontFamily="@font/comfortaa_bold"
                 android:background="@drawable/bg_button"
                 android:text="@string/btn_add_timetable"
                 />

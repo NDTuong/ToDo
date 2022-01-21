@@ -2,33 +2,26 @@ package com.example.todo.Fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.GridView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.todo.Adapter.ChooseIconAdapter;
-import com.example.todo.Adapter.GroupTaskAdapter;
 import com.example.todo.Adapter.MenuAdapter;
-import com.example.todo.Adapter.TaskAdapter;
 import com.example.todo.LoginActivity;
 import com.example.todo.Model.Menu;
-import com.example.todo.Model.Task;
 import com.example.todo.R;
 import com.example.todo.TaskActivity;
 import com.example.todo.TimeTableActivity;
@@ -40,13 +33,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MenuFragment extends Fragment {
     View view;
@@ -165,8 +153,10 @@ public class MenuFragment extends Fragment {
     }
     private void clickAddMenu(){
         Dialog mDialog;
-        int [] icons = {R.drawable.add,R.drawable.task,R.drawable.schedule, R.drawable.note, R.drawable.menu_color, R.drawable.timetable, R.drawable.doings, R.drawable.menu};
+        int [] icons = {R.drawable.add,R.drawable.task,R.drawable.schedule, R.drawable.note, R.drawable.menu_color, R.drawable.timetable, R.drawable.doings, R.drawable.menu,
+                        R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_star_border_24};
         mDialog=new Dialog(getContext());
+        mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         mDialog.setContentView(R.layout.dialog_add_menu);
         RecyclerView rcvChooseIcon = (RecyclerView) mDialog.findViewById(R.id.recycleViewIcon);

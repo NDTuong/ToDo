@@ -69,7 +69,7 @@
             android:layout_margin="3dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/bg_button"
-            android:text="@string/btn_cancle"
+            android:text="@string/btn_cancel"
             android:textColor="@color/white" />
     </LinearLayout>
 

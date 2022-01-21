@@ -2,298 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/constraintLayoutTb"
+    android:background="@color/primary_color"
     tools:context=".TimeTableActivity">
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/dark_color"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/iconBack2Menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            app:tint="@color/white" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/opensans_semicondensed_bold"
-        android:text="@string/menu_timetable"
-        android:textColor="@color/dark_color"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="490dp"
-            android:background="@color/dark_color"
-            android:orientation="vertical">
-
-            <TableLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:fontFamily="@font/opensans_semicondensed_bold"
-                        android:gravity="center_vertical"
-                        android:text="@string/monday"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-                </TableRow>
-                <!--                <com.google.android.material.divider.MaterialDivider-->
-                <!--                    android:layout_width="1dp"-->
-                <!--                    android:layout_height="1dp"/>-->
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:gravity="center_vertical"
-                        android:fontFamily="@font/opensans_semicondensed_bold"
-                        android:textColor="@color/white"
-                        android:text="@string/tuesday"
-                        android:textSize="16sp" />
-                </TableRow>
-                <!--                <com.google.android.material.divider.MaterialDivider-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="1dp"/>-->
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/wednesday"
-                        android:fontFamily="@font/opensans_semicondensed_bold"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-                </TableRow>
-                <!--                <com.google.android.material.divider.MaterialDivider-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="1dp"/>-->
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:gravity="center_vertical"
-                        android:fontFamily="@font/opensans_semicondensed_bold"
-                        android:textColor="@color/white"
-                        android:text="@string/thursday"
-                        android:textSize="16sp" />
-                </TableRow>
-                <!--                <com.google.android.material.divider.MaterialDivider-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="1dp"/>-->
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:gravity="center_vertical"
-                        android:fontFamily="@font/opensans_semicondensed_bold"
-                        android:textColor="@color/white"
-                        android:text="@string/friday"
-                        android:textSize="16sp" />
-                </TableRow>
-                <!--                <com.google.android.material.divider.MaterialDivider-->
-                <!--                    android:layout_width="1dp"-->
-                <!--                    android:layout_height="1dp"/>-->
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:gravity="center_vertical"
-                        android:fontFamily="@font/opensans_semicondensed_bold"
-                        android:textColor="@color/white"
-                        android:text="@string/saturday"
-                        android:textSize="16sp" />
-                </TableRow>
-                <!--                <com.google.android.material.divider.MaterialDivider-->
-                <!--                    android:layout_width="1dp"-->
-                <!--                    android:layout_height="1dp"/>-->
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/sunday"
-                        android:fontFamily="@font/opensans_semicondensed_bold"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-                </TableRow>
-            </TableLayout>
-        </LinearLayout>
-
-        <HorizontalScrollView
-            android:id="@+id/scrollViewTimeTable"
-            android:layout_width="match_parent"
-            android:layout_height="490dp"
-            android:fillViewport="true">
-
-            <LinearLayout
-                android:id="@+id/linearLayoutTimeTable"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TableRow
-                        android:id="@+id/rowMonday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="58dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="1dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="58dp" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/rowTuesday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="58dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="1dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="58dp" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/rowWednesday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="58dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="1dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="58dp" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/rowThursday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="58dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="1dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="58dp" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/rowFriday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="58dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="1dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="58dp" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/rowSaturday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="58dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="1dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="58dp" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/rowSunday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="58dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="1dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="58dp" />
-                    </TableRow>
-
-                </TableLayout>
-            </LinearLayout>
-        </HorizontalScrollView>
-
-    </LinearLayout>
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddTimeTable"
         android:layout_width="wrap_content"
@@ -303,19 +16,264 @@
         android:clickable="true"
         android:contentDescription="@string/todo"
         android:focusable="true"
-        android:backgroundTint="@color/dark_color"
+        android:backgroundTint="@color/primary_color"
         app:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_add_24" />
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/todo"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"></FrameLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/ivBack2Menu"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:tint="@color/white" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="40dp"
+                android:background="@color/primary_color"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="@string/menu_timetable"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/timetable"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/back_ground_login_signup"
+            android:orientation="horizontal">
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="40dp"
+                android:columnCount="1">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/dark_color"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:gravity="center"
+                    android:text="@string/monday"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/dark_color"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:gravity="center"
+                    android:text="@string/tuesday"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/dark_color"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:gravity="center"
+                    android:text="@string/wednesday"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/dark_color"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:gravity="center"
+                    android:text="@string/thursday"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/dark_color"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:gravity="center"
+                    android:text="@string/friday"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/dark_color"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:gravity="center"
+                    android:text="@string/saturday"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/dark_color"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:gravity="center"
+                    android:text="@string/sunday"
+                    android:textColor="@color/white" />
+            </GridLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:scrollbars="none">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvMon"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </HorizontalScrollView>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:scrollbars="none">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvTue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </HorizontalScrollView>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:scrollbars="none">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvWed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </HorizontalScrollView>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:scrollbars="none">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvThur"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </HorizontalScrollView>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:scrollbars="none">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvFri"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </HorizontalScrollView>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:scrollbars="none">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvSat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </HorizontalScrollView>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:scrollbars="none">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvSun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
