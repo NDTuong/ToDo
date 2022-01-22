@@ -8,7 +8,7 @@
     tools:context=".TaskActivity2">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddTimeTable"
+        android:id="@+id/fabAddTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvTaskName2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -74,6 +74,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal"
             android:background="@drawable/bg_spinner_task">
             <ImageView

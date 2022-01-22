@@ -5,9 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="5dp"
+    app:cardElevation="1dp"
+    android:background="@color/bg_color"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
     app:cardUseCompatPadding="true"
-    app:contentPadding="10dp">
+    app:contentPadding="10dp"
+    android:id="@+id/cvItemTask">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,16 +19,15 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/day"
+                android:id="@+id/tvDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -34,7 +37,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -43,12 +46,12 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/month"
+                android:id="@+id/tvMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:alpha="0.5"
-                android:text="Nov"
+                android:text="Nov, 21"
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
@@ -75,7 +78,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/tvTaskName2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -86,35 +89,69 @@
                     tools:text="Title" />
 
                 <ImageView
-                    android:id="@+id/options"
+                    android:id="@+id/ivOptions"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_baseline_more_horiz_24" />
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alpha="0.5"
-                android:fontFamily="@font/comfortaa_regular"
-                android:singleLine="true"
-                android:textColor="@android:color/black"
-                android:textSize="12sp"
-                tools:text="Full House is the Grand prize in any Tambola game played. It means all 15 Numbers of a ticket are cut, striked out" />
-
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:alpha="0.5"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    tools:text="Full House is the Grand prize in any Tambola game played. It means all 15 Numbers of a ticket are cut, striked out" />
+                <ImageView
+                    android:id="@+id/tvIsImportant"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_star_border_24"
+                    app:tint="@color/star_color" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alpha="0.5"
-                android:fontFamily="@font/comfortaa_regular"
-                android:singleLine="true"
-                android:textColor="@android:color/black"
-                android:textSize="12sp"
-                tools:text="6:25" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:visibility="invisible"
+                android:id="@+id/llNotify">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_notifications_24"
+                    android:layout_marginEnd="5dp"
+                    app:tint="@color/icon_notify" />
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.5"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    tools:text="6:25" />
+            </LinearLayout>
+
 
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+

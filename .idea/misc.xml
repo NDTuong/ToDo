@@ -49,6 +49,7 @@
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/activity_time_table2.xml" value="0.33" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/activity_time_table_draft.xml" value="0.1" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/activity_user_info.xml" value="0.2" />
+        <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/bottom_sheet_task_layout.xml" value="0.25" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/dialog_add_menu.xml" value="0.2" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/dialog_forgot_password.xml" value="0.25" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/dialog_set_date_time.xml" value="0.10280797101449275" />
@@ -64,12 +65,14 @@
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/item_icon.xml" value="0.2" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/item_menu.xml" value="0.2" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/item_task.xml" value="0.33" />
-        <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/item_task2.xml" value="0.25" />
+        <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/item_task2.xml" value="0.33" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/item_time_table.xml" value="0.2" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/menu_item.xml" value="0.2" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/spinner_selected_item.xml" value="0.2" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/spinner_selected_item_task.xml" value="0.1" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/layout/spinner_slected_item_task.xml" value="0.2" />
+        <entry key="..\:/OneDrive/ToDo/app/src/main/res/menu/menu_del_task.xml" value="0.2" />
+        <entry key="..\:/OneDrive/ToDo/app/src/main/res/menu/menu_item_task.xml" value="0.2" />
         <entry key="..\:/OneDrive/ToDo/app/src/main/res/menu/menu_select_task.xml" value="0.2" />
         <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/Tuong/OneDrive/ToDo/app/src/main/res/layout/activity_login.xml" value="0.1" />

@@ -13,4 +13,6 @@
     <color name="dark_color">#0093c4</color>
     <color name="bg_color">#f2f4f5</color>
     <color name="gray_color">#757575</color>
+    <color name="star_color">#f7834f</color>
+    <color name="icon_notify">#f7e84f</color>
 </resources>

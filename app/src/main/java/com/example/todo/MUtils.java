@@ -2,14 +2,17 @@ package com.example.todo;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.todo.Model.DayOfWeek;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class MUtils extends AppCompatActivity {
     public static int convertPixelsToDp(float px, Context context){
@@ -35,5 +38,6 @@ public class MUtils extends AppCompatActivity {
         }
 
     }
+
 
 }

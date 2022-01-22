@@ -78,10 +78,9 @@ public class TimeTableActivity extends AppCompatActivity implements SelectListen
         // Quay lại MenuFragment
         ivBack2Menu = findViewById(R.id.ivBack2Menu);
         ivBack2Menu.setOnClickListener(v -> finish());
-        //showTimeTable();
+
         // Kết nối database
         dbTimeTable = FirebaseDatabase.getInstance().getReference(UID);
-//        createData();
         dbTimeTable.child("time_table").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -407,17 +406,6 @@ public class TimeTableActivity extends AppCompatActivity implements SelectListen
         return getString(R.string.sunday);
     }
 
-    private void createData() {
-        TimeTable t2 = new TimeTable(".", ".", DayOfWeek.MON, ".", ".");
-        timeTableMon.add(t2);
-        timeTableTue.add(t2);
-        timeTableWed.add(t2);
-        timeTableThur.add(t2);
-        timeTableFri.add(t2);
-        timeTableSat.add(t2);
-        timeTableSun.add(t2);
-    }
-
     private void clearData() {
         timeTableMon.clear();
         timeTableTue.clear();
@@ -426,6 +414,5 @@ public class TimeTableActivity extends AppCompatActivity implements SelectListen
         timeTableFri.clear();
         timeTableSat.clear();
         timeTableSun.clear();
-        createData();
     }
 }

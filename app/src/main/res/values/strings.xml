@@ -87,11 +87,15 @@
     <string name="num_people_default">2 người</string>
     <string name="shared_with">Đã chia sẻ với: </string>
     <string name="empty_task_name">Chưa nhập tên công việc!</string>
+    <string name="empty_deadline">Chưa chọn ngày đến hạn!</string>
+    <string name="empty_notify">Chưa nhập tên công việc!</string>
     <string name="setting">Cài đặt</string>
     <string name="hello_default">Chào buổi sáng,</string>
     <string name="profile">Cá nhân</string>
     <string name="list_name">Tên dánh sách:</string>
     <string name="select_icon">Chọn icon</string>
+    <string name="add_success">Thêm thành công!</string>
+    <string name="add_failure">Thêm thất bại!</string>
 
 
 </resources>

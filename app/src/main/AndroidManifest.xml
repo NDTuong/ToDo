@@ -19,7 +19,8 @@
             android:exported="false" />
         <activity
             android:name=".TaskActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" /> <!-- <activity -->

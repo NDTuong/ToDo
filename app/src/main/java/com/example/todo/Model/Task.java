@@ -1,6 +1,5 @@
 package com.example.todo.Model;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -15,11 +14,26 @@ public class Task {
     boolean isImportant;
     boolean isShareTask;
 
-    String process;;
+    String process;
+    ;
     String timeComplete;
     String note;
     String idListTask;
     Map<String, List<String>> listShare;
+    String taskID;
+    boolean isSelected;
+
+    public Task() {
+        this.isSelected = false;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     public String getTaskID() {
         return taskID;
@@ -27,11 +41,6 @@ public class Task {
 
     public void setTaskID(String taskID) {
         this.taskID = taskID;
-    }
-
-    String taskID;
-
-    public Task() {
     }
 
     public String getIdListTask() {

@@ -21,7 +21,7 @@
             android:checked="false" />
 
         <TextView
-            android:id="@+id/tvTaskName"
+            android:id="@+id/tvTaskName2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_toEndOf="@id/tvTaskName"
+            android:layout_toEndOf="@id/tvTaskName2"
             android:paddingTop="5dp"
             android:src="@drawable/ic_baseline_people_24"
             android:visibility="invisible" />
@@ -64,7 +64,7 @@
             android:id="@+id/iconCalendar"
             android:layout_width="14dp"
             android:layout_height="14dp"
-            android:layout_below="@id/tvTaskName"
+            android:layout_below="@id/tvTaskName2"
             android:layout_marginStart="3dp"
             android:layout_marginTop="6dp"
             android:layout_toEndOf="@+id/cbIsCompleted"
@@ -75,7 +75,7 @@
             android:id="@+id/tvEndDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvTaskName"
+            android:layout_below="@id/tvTaskName2"
             android:layout_toEndOf="@id/iconCalendar"
             android:padding="3dp"
             android:text="@string/task_end_day" />
@@ -84,7 +84,7 @@
             android:id="@+id/tvDeadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvTaskName"
+            android:layout_below="@id/tvTaskName2"
             android:layout_toEndOf="@id/tvEndDay"
             android:padding="3dp"
             android:text="@string/task_deadline_default" />

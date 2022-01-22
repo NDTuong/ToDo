@@ -109,7 +109,7 @@ public class MenuFragment extends Fragment {
                             startActivity(intent);
                         }
                         if(go2NewActivity == 2){
-                            Intent intent = new Intent(getContext(), TimeTableActivity.class);
+                            Intent intent = new Intent(getContext(), TaskActivity.class);
                             startActivity(intent);
                         }
                         if(go2NewActivity == 3){
