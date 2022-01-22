@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Login - SignUp Activity-->
     <string name="app_name">ToDo</string>
@@ -25,7 +26,7 @@
     <string name="task_process_default">(0/0)</string>
     <string name="task_end_day">Ngày hết hạn: </string>
     <string name="menu_timetable">Thời khóa biểu</string>
-    <string name="menu_task">Tất cả công việc</string>
+    <string name="menu_task">Công việc</string>
     <string name="menu_note">Ghi chú</string>
     <string name="menu_add">Tạo danh sách công việc mới</string>
     <string name="menu_share_task">Công việc được giao</string>
@@ -67,6 +68,7 @@
     <string name="tomorrow">Ngày mai</string>
     <string name="week">Tuần này</string>
     <string name="expired"> Đã hết hạn</string>
+    <string name="uncompleted"> Chưa hoàn thành</string>
     <string name="all_task">Tất cả</string>
     <string name="completed">Đã hoàn thành</string>
 

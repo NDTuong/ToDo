@@ -24,6 +24,7 @@ import com.example.todo.LoginActivity;
 import com.example.todo.Model.Menu;
 import com.example.todo.R;
 import com.example.todo.TaskActivity;
+import com.example.todo.TaskActivity2;
 import com.example.todo.TimeTableActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,7 +43,7 @@ public class MenuFragment extends Fragment {
     FirebaseAuth mAuth;
     DatabaseReference mDatabase;
     String UID;
-
+    List<Menu> listMenu = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,20 +74,6 @@ public class MenuFragment extends Fragment {
 //            startActivity(intent);
 //        });
 
-
-        // Show menu
-        List<Menu> listMenu = new ArrayList<>();
-//        Menu menuTimeTable = new Menu(R.drawable.timetable, getResources().getString(R.string.menu_timetable));
-//        Menu menuAllTask = new Menu(R.drawable.task, getResources().getString(R.string.menu_task));
-//        Menu menuNote = new Menu(R.drawable.note, getResources().getString(R.string.menu_note));
-//        Menu menuAddNew = new Menu(R.drawable.add, getResources().getString(R.string.menu_add));
-//        menuTimeTable.setIdMenu(0);
-//        menuAllTask.setIdMenu(1);
-//        menuAddNew.setIdMenu(3);
-//        menuNote.setIdMenu(2);
-//        listMenu.add(menuTimeTable);
-//        listMenu.add(menuAllTask);
-//        listMenu.add(menuNote);
 //        listMenu.add(menuAddNew);
 //        listMenu.add(menuTimeTable);
 //        listMenu.add(menuAllTask);
@@ -100,34 +87,39 @@ public class MenuFragment extends Fragment {
         mDatabase.child(UID).child("list_menu").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                createMenu();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Menu m = snapshot.getValue(Menu.class);
                     listMenu.add(m);
-                    gridViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            int go2NewActivity = listMenu.get(position).getIdMenu();
-                            if(go2NewActivity == 0){
-                                Intent intent = new Intent(getContext(), TimeTableActivity.class);
-                                startActivity(intent);
-                            }
-                            if(go2NewActivity == 1){
-                                Intent intent = new Intent(getContext(), TaskActivity.class);
-                                startActivity(intent);
-                            }
-                            if(go2NewActivity == 2){
-                                Intent intent = new Intent(getContext(), TimeTableActivity.class);
-                                startActivity(intent);
-                            }
-                            if(go2NewActivity == 3){
-                                Menu addMenu = listMenu.get(position);
-                                listMenu.remove(addMenu);
-                                clickAddMenu();
-                                listMenu.add(addMenu);
-                            }
-                        }
-                    });
                 }
+                Menu menuAddNew = new Menu(R.drawable.add, getResources().getString(R.string.menu_add));
+                menuAddNew.setIdMenu(3);
+                listMenu.add(menuAddNew);
+
+                gridViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        int go2NewActivity = listMenu.get(position).getIdMenu();
+                        if(go2NewActivity == 0){
+                            Intent intent = new Intent(getContext(), TimeTableActivity.class);
+                            startActivity(intent);
+                        }
+                        if(go2NewActivity == 1){
+                            Intent intent = new Intent(getContext(), TaskActivity2.class);
+                            startActivity(intent);
+                        }
+                        if(go2NewActivity == 2){
+                            Intent intent = new Intent(getContext(), TimeTableActivity.class);
+                            startActivity(intent);
+                        }
+                        if(go2NewActivity == 3){
+                            Menu addMenu = listMenu.get(position);
+                            listMenu.remove(addMenu);
+                            clickAddMenu();
+                            listMenu.add(addMenu);
+                        }
+                    }
+                });
                 // Create an object of CustomAdapter and set Adapter to GirdView
                 MenuAdapter customAdapter = new MenuAdapter(getContext(), listMenu);
                 gridViewMenu.setAdapter(customAdapter);
@@ -167,5 +159,16 @@ public class MenuFragment extends Fragment {
         rcvChooseIcon.setAdapter(chooseIconAdapter);
         mDialog.show();
     }
-
+    private void createMenu(){
+        listMenu.clear();
+        Menu menuTimeTable = new Menu(R.drawable.timetable, getResources().getString(R.string.menu_timetable));
+        Menu menuAllTask = new Menu(R.drawable.task, getResources().getString(R.string.menu_task));
+        Menu menuNote = new Menu(R.drawable.note, getResources().getString(R.string.menu_note));
+        menuTimeTable.setIdMenu(0);
+        menuAllTask.setIdMenu(1);
+        menuNote.setIdMenu(2);
+        listMenu.add(menuTimeTable);
+        listMenu.add(menuAllTask);
+        listMenu.add(menuNote);
+    }
 }

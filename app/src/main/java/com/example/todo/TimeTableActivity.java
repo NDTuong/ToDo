@@ -81,7 +81,7 @@ public class TimeTableActivity extends AppCompatActivity implements SelectListen
         //showTimeTable();
         // Kết nối database
         dbTimeTable = FirebaseDatabase.getInstance().getReference(UID);
-        createData();
+//        createData();
         dbTimeTable.child("time_table").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

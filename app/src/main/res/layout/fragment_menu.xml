@@ -46,6 +46,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="50dp"
         android:background="@drawable/back_ground_login_signup">
         <GridView
             android:layout_width="wrap_content"

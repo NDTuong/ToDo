@@ -16,8 +16,8 @@
         android:clickable="true"
         android:contentDescription="@string/todo"
         android:focusable="true"
-        android:backgroundTint="@color/primary_color"
-        app:tint="@color/white"
+        android:backgroundTint="@color/white"
+        app:tint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_add_24" />
@@ -49,8 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="25dp"
                 android:background="@color/primary_color"
                 android:fontFamily="@font/comfortaa_bold"
                 android:text="@string/menu_timetable"
@@ -74,13 +74,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/back_ground_login_signup"
+            android:background="@color/primary_color"
             android:orientation="horizontal">
 
             <GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:layout_marginEnd="3dp"
                 android:layout_marginTop="40dp"
                 android:columnCount="1">
 
@@ -88,71 +89,71 @@
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/dark_color"
+                    android:background="@color/bg_color"
                     android:fontFamily="@font/comfortaa_bold"
                     android:gravity="center"
                     android:text="@string/monday"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/dark_color"
+                    android:background="@color/bg_color"
                     android:fontFamily="@font/comfortaa_bold"
                     android:gravity="center"
                     android:text="@string/tuesday"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/dark_color"
+                    android:background="@color/bg_color"
                     android:fontFamily="@font/comfortaa_bold"
                     android:gravity="center"
                     android:text="@string/wednesday"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/dark_color"
+                    android:background="@color/bg_color"
                     android:fontFamily="@font/comfortaa_bold"
                     android:gravity="center"
                     android:text="@string/thursday"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/dark_color"
+                    android:background="@color/bg_color"
                     android:fontFamily="@font/comfortaa_bold"
                     android:gravity="center"
                     android:text="@string/friday"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/dark_color"
+                    android:background="@color/bg_color"
                     android:fontFamily="@font/comfortaa_bold"
                     android:gravity="center"
                     android:text="@string/saturday"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/dark_color"
+                    android:background="@color/bg_color"
                     android:fontFamily="@font/comfortaa_bold"
                     android:gravity="center"
                     android:text="@string/sunday"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
             </GridLayout>
 
             <LinearLayout

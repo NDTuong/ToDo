@@ -48,16 +48,16 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.Time
             holder.tvItemTbName.setText(t.getSubject());
             holder.tvItemTbClass.setText(t.getLocation());
             holder.tvItemTbTime.setText(t.getDuration());
-            if(position == 0){
-                holder.llItemTb.setBackgroundResource(R.color.bg_color);
-                holder.tvItemTbName.setVisibility(View.INVISIBLE);
-                holder.tvItemTbClass.setVisibility(View.INVISIBLE);
-                holder.tvItemTbTime.setVisibility(View.INVISIBLE);
+//            if(position == 0){
+//                holder.llItemTb.setBackgroundResource(R.color.bg_color);
+//                holder.tvItemTbName.setVisibility(View.INVISIBLE);
+//                holder.tvItemTbClass.setVisibility(View.INVISIBLE);
+//                holder.tvItemTbTime.setVisibility(View.INVISIBLE);
 //                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 //                lp.setMargins(0,0,0,5);
 //                holder.llItemTb.setLayoutParams(lp);
 //                holder.llItemTb.setPadding(0,0,3,5);
-            }
+//            }
 //            holder.tvItemTbKey.setText(t.getKey());
 
             holder.llItemTb.setOnLongClickListener(new View.OnLongClickListener() {
