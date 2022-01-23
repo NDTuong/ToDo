@@ -12,15 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDo">
         <activity
-            android:name=".TaskActivity2"
+            android:name=".TaskActivity"
             android:exported="false" />
         <activity
             android:name=".TimeTableActivity"
             android:exported="false" />
-        <activity
-            android:name=".TaskActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" /> <!-- <activity -->

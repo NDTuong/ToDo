@@ -49,13 +49,15 @@ public class BottomSheetDialogTask extends BottomSheetDialogFragment {
     int day, month, year, hour, minute;
     int myDay, myMonth, myYear,myHour, myMinute;
 
+    int FLAG = 0;
+    String taskID ="";
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable
             ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.bottom_sheet_task_layout,
                 container, false);
-
 
         //Lây UID của người dùng hiện tại
         mAuth = FirebaseAuth.getInstance();
@@ -70,6 +72,39 @@ public class BottomSheetDialogTask extends BottomSheetDialogFragment {
         // Lấy isImportant để lưu vào task ở phần sau
         tilTaskName = (TextInputLayout) v.findViewById(R.id.tilTaskName);
         tilNote = (TextInputLayout) v.findViewById(R.id.tilNote);
+        tvSetDeadline = (TextView) v.findViewById(R.id.tvSetDeadline);
+        tvSetNotify = (TextView) v.findViewById(R.id.tvSetNotify);
+
+        try{
+            savedInstanceState = getArguments();
+            FLAG = 1;
+            String sTask = savedInstanceState.getString("task");
+            String[] task = sTask.split("//");
+            Log.d("BottomSheet", "task2string: " + sTask );
+            tilTaskName.getEditText().setText(task[0].split("=")[1]);
+            tvSetDeadline.setText(task[1].split("=")[1]);
+            String[] arr_notify = task[2].split("=");
+            if(arr_notify.length > 1 && !arr_notify[1].equals("null")){
+                tvSetNotify.setText(arr_notify[1]);
+            }
+            if(task[4].split("=")[1].equals("true")){
+                tilTaskName.setEndIconDrawable(R.drawable.ic_baseline_star_24);
+            } else {
+                tilTaskName.setEndIconDrawable(R.drawable.ic_baseline_star_border_24);
+            }
+            String[] arr_note = task[7].split("=");
+            if(arr_note.length > 1){
+                tilNote.getEditText().setText(arr_note[1]);
+            }
+            taskID = task[6].split("=")[1];
+        } catch (Exception e){
+            if(taskID==""){
+                FLAG = 0;
+            }
+            Log.d("BottomSheet", "task2string: error" );
+        }
+
+
         tilTaskName.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,8 +117,7 @@ public class BottomSheetDialogTask extends BottomSheetDialogFragment {
             }
         });
 
-        tvSetDeadline = (TextView) v.findViewById(R.id.tvSetDeadline);
-        tvSetNotify = (TextView) v.findViewById(R.id.tvSetNotify);
+
         tvSetDeadline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,15 +160,22 @@ public class BottomSheetDialogTask extends BottomSheetDialogFragment {
                         notify = null;
                     }
                     String note = tilNote.getEditText().getText().toString();
-                    String idTask = mDatabase.push().getKey();
+                    // tạo mới Flag = 0 || Update flag = 1
+                    if(FLAG == 0){
+                        taskID = mDatabase.push().getKey();
+                    }
+
                     Task newTask = new Task();
                     newTask.setTaskName(taskName);
                     newTask.setImportant(isImportant);
                     newTask.setDeadLine(deadLine);
                     newTask.setNotify(notify);
                     newTask.setNote(note);
-                    newTask.setTaskID(idTask);
-                    mDatabase.child(UID).child("task").child(idTask).setValue(newTask).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    newTask.setTaskID(taskID);
+                    if(FLAG == 1){
+                        mDatabase.child(UID).child("update_task").setValue(newTask);
+                    }
+                    mDatabase.child(UID).child("task").child(taskID).setValue(newTask).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
                             if (task.isSuccessful()) {
@@ -152,7 +193,6 @@ public class BottomSheetDialogTask extends BottomSheetDialogFragment {
                             dismiss();
                         }
                     });
-
                 }
             }
         });

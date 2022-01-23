@@ -1,5 +1,8 @@
 package com.example.todo.Model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -8,20 +11,15 @@ public class Task {
     String taskName;
     String deadLine;
     String notify;
-    List<String> subTask;
+    boolean isImportant;
+    String note;
+    String taskID;
 
     boolean isComplete;
-    boolean isImportant;
-    boolean isShareTask;
-
-    String process;
-    ;
     String timeComplete;
-    String note;
     String idListTask;
-    Map<String, List<String>> listShare;
-    String taskID;
     boolean isSelected;
+    SimpleDateFormat DEADLINE_FORMAT = new SimpleDateFormat("dd/M/yyyy");
 
     public Task() {
         this.isSelected = false;
@@ -79,14 +77,6 @@ public class Task {
         this.notify = notify;
     }
 
-    public List<String> getSubTask() {
-        return subTask;
-    }
-
-    public void setSubTask(List<String> subTask) {
-        this.subTask = subTask;
-    }
-
     public boolean isComplete() {
         return isComplete;
     }
@@ -101,22 +91,6 @@ public class Task {
 
     public void setImportant(boolean important) {
         isImportant = important;
-    }
-
-    public boolean isShareTask() {
-        return isShareTask;
-    }
-
-    public void setShareTask(boolean shareTask) {
-        isShareTask = shareTask;
-    }
-
-    public String getProcess() {
-        return process;
-    }
-
-    public void setProcess(String process) {
-        this.process = process;
     }
 
     public String getTimeComplete() {
@@ -134,42 +108,35 @@ public class Task {
     public void setNote(String note) {
         this.note = note;
     }
-
-    public Map<String, List<String>> getListShare() {
-        return listShare;
-    }
-
-    public void setListShare(Map<String, List<String>> listShare) {
-        this.listShare = listShare;
+    public Date getDate() throws ParseException {
+        Date d = DEADLINE_FORMAT.parse(this.deadLine);
+        return d;
     }
 
     @Override
     public String toString() {
-        return "Task{" +
-                "taskName='" + taskName + '\'' +
-                ", deadLine=" + deadLine +
-                ", notify=" + notify +
-                ", subTask=" + subTask +
-                ", isComplete=" + isComplete +
-                ", isImportant=" + isImportant +
-                ", isShareTask=" + isShareTask +
-                ", process='" + process + '\'' +
-                ", timeComplete='" + timeComplete + '\'' +
-                ", note='" + note + '\'' +
-                ", listShare=" + listShare +
-                '}';
+        return "taskName=" + taskName + "//" +
+                "deadLine=" + deadLine + "//" +
+                "notify=" + notify + "//" +
+                "isComplete=" + isComplete + "//" +
+                "isImportant=" + isImportant + "//" +
+                "timeComplete=" + timeComplete + "//" +
+                "taskID=" + taskID + "//" +
+                "note=" + note;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return taskName.equals(task.taskName) && Objects.equals(deadLine, task.deadLine) && Objects.equals(notify, task.notify) && Objects.equals(subTask, task.subTask);
+        return isImportant == task.isImportant && isComplete == task.isComplete && isSelected == task.isSelected && Objects.equals(taskName, task.taskName) && Objects.equals(deadLine, task.deadLine) && Objects.equals(notify, task.notify) && Objects.equals(note, task.note) && Objects.equals(taskID, task.taskID) && Objects.equals(timeComplete, task.timeComplete) && Objects.equals(idListTask, task.idListTask);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskName, deadLine, notify, subTask);
+        return Objects.hash(taskName, deadLine, notify, isImportant, note, taskID, isComplete, timeComplete, idListTask, isSelected);
     }
 }

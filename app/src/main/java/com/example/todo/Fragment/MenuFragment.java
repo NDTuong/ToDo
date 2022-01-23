@@ -24,7 +24,6 @@ import com.example.todo.LoginActivity;
 import com.example.todo.Model.Menu;
 import com.example.todo.R;
 import com.example.todo.TaskActivity;
-import com.example.todo.TaskActivity2;
 import com.example.todo.TimeTableActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -105,7 +104,7 @@ public class MenuFragment extends Fragment {
                             startActivity(intent);
                         }
                         if(go2NewActivity == 1){
-                            Intent intent = new Intent(getContext(), TaskActivity2.class);
+                            Intent intent = new Intent(getContext(), TaskActivity.class);
                             startActivity(intent);
                         }
                         if(go2NewActivity == 2){

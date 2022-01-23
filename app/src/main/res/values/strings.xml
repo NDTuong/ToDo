@@ -38,6 +38,16 @@
     <string name="delete">Xóa</string>
     <string name="edit">Sửa</string>
     <string name="save">Lưu</string>
+    <string name="error">Xảy ra lỗi</string>
+    <string name="sure_delete">Bạn chắc chắn muốn xóa công việc này?</string>
+    <string name="sure_completed">Bạn chắc chắn rằng đã hoàn thành công việc này?</string>
+    <string name="sure_uncompleted">Bạn chắc chắn rằng chưa hoàn thành công việc này?</string>
+    <string name="delete_confirmation">Xác nhận xóa</string>
+    <string name="completed_confirmation">Xác nhận hoàn thành</string>
+    <string name="uncompleted_confirmation">Đánh dấu chưa hoàn thành</string>
+    <string name="comfirm">Xác nhận</string>
+    <string name="un_complete">Chưa hoàn thành</string>
+    <string name="detail">Xem chi tiết</string>
 
 
     <string name="monday">Thứ hai</string>

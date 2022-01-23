@@ -2,30 +2,23 @@ package com.example.todo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.example.todo.Adapter.TaskAdapter;
-import com.example.todo.Fragment.AddTaskFragment;
+import com.example.todo.Fragment.BottomSheetDialogTask;
+import com.example.todo.Model.SpinnerRangeTask;
 import com.example.todo.Model.Task;
-import com.example.todo.Model.TimeTable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,36 +27,37 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class TaskActivity extends AppCompatActivity {
+    ImageView ivBack2Menu;
+    FloatingActionButton fabAddTask;
+    RecyclerView rcvTask;
+    TaskAdapter taskAdapter;
 
     Spinner spinnerRange;
     ArrayList<String> range;
     ArrayAdapter<String> arrayAdapterRange;
 
-    ImageView ivBack2Menu;
-    RecyclerView rcvTask;
-    TaskAdapter taskAdapter;
-
-    FloatingActionButton fabAddTask;
-    private int count = 0;
-
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private String UID;
 
-
+    SimpleDateFormat DEADLINE_FORMAT = new SimpleDateFormat("dd/M/yyyy");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
-
-        // Quay lại MenuFragment
-        ivBack2Menu = findViewById(R.id.iconBack2Menu);
-        ivBack2Menu.setOnClickListener(v -> finish());
 
         // Get current user ID
         mAuth = FirebaseAuth.getInstance();
@@ -78,73 +72,80 @@ public class TaskActivity extends AppCompatActivity {
         // Kết nối database
         mDatabase = FirebaseDatabase.getInstance().getReference(UID);
 
+        // Quay lại MenuFragment
+        ivBack2Menu = findViewById(R.id.ivBack2Menu);
+        ivBack2Menu.setOnClickListener(v -> finish());
+
         // Tạo spinner chọn khoảng thời gian để hiển thị task
-        range = new ArrayList<>();
-        range.add(getString(R.string.all_task));
-        range.add(getString(R.string.today));
-        range.add(getString(R.string.tomorrow));
-        range.add(getString(R.string.week));
-        range.add(getString(R.string.expired));
-        range.add(getString(R.string.completed));
+        range = new ArrayList<String>( Arrays.asList(getString(R.string.all_task),
+                getString(R.string.today), getString(R.string.tomorrow),getString(R.string.week),
+                getString(R.string.completed)));
 
         spinnerRange = findViewById(R.id.spinnerRange);
-        arrayAdapterRange = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, range);
+        arrayAdapterRange = new ArrayAdapter<>(this, R.layout.spinner_selected_item_task, range);
         arrayAdapterRange.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerRange.setAdapter(arrayAdapterRange);
 
-        // Set sự kiện khi click fab
-        fabAddTask = findViewById(R.id.fabAddTask);
-        fabAddTask.setOnClickListener(v -> {
-            fabAddTask.setVisibility(View.GONE);
-            loadFragment(new AddTaskFragment());
-
+        fabAddTask = (FloatingActionButton) findViewById(R.id.fabAddTask);
+        fabAddTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialogTask bottomSheet = new BottomSheetDialogTask();
+                bottomSheet.show(getSupportFragmentManager(),
+                        "ModalBottomSheet");
+            }
         });
+        spinnerRange.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                getListTaskNShow(position);
+            }
 
-        getListTaskAndShow();
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.d("TaskActivity", "selected: null");
+            }
+        });
     }
 
-    // khi bấm quay lại mà có fagment thì đóng
-    @Override
-    public void onBackPressed() {
-        if (count >= 1) {
-            closeFragment();
-            count = 0;
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-
-    private void showTask(List<Task> tasks){
-        // Hiển thị danh sách task ra màn hình
-        rcvTask = (RecyclerView) findViewById(R.id.recycleViewTask);
-        taskAdapter = new TaskAdapter(this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
-        rcvTask.setLayoutManager(linearLayoutManager);
-        taskAdapter.setData(tasks, UID);
-        rcvTask.setAdapter(taskAdapter);
-    }
-
-    private void getListTaskAndShow(){
-        List<Task> tasks = new ArrayList<>();
+    private void getListTaskNShow(int flags){
+        SpinnerRangeTask sp = new SpinnerRangeTask();
         //lấy từ database
         mDatabase.child("task").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Task> tasks = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Task mTask = snapshot.getValue(Task.class);
                     assert mTask != null;
-                    if (tasks.contains(mTask)) {
+                    if(tasks.contains(mTask)){
+                        Log.d("TaskActivity", "isContains: true");
                         continue;
                     }
-//                    if (checkUpdateTimeTable(mTimeTable, listTimeTable)) {
-//                        showTimeTable(mTimeTable);
-//                        continue;
-//                    }
-                    tasks.add(mTask);
-                    showTask(tasks);
-                    Log.d("AAAAB", "After: " + tasks.toString());
+                    if(flags==0 && !mTask.isComplete()) {
+                        tasks.add(mTask);
+                    }
+                    if(flags==1 && !mTask.isComplete()){
+                        if(mTask.getDeadLine().equals(sp.getToday())){
+                            tasks.add(mTask);
+                        }
+                    }
+                    if(flags==2 && !mTask.isComplete()){
+                        if(mTask.getDeadLine().equals(sp.getTomorrow())){
+                                    tasks.add(mTask);
+                        }
+                    }
+                    if(flags==3 && !mTask.isComplete()) {
+                        if(sp.getCurrentWeek().contains(mTask.getDeadLine())){
+                            tasks.add(mTask);
+                        }
+                    }
+                    if(flags==4 && mTask.isComplete()){
+                        tasks.add(mTask);
+                    }
                 }
+                sortByDate(tasks);
+                showTask(tasks);
             }
 
             @Override
@@ -153,37 +154,26 @@ public class TaskActivity extends AppCompatActivity {
             }
         });
     }
-
-    // Hàm load fragment
-    private void loadFragment(Fragment fragment) {
-        // create a FragmentManager
-        FragmentManager fm = getSupportFragmentManager();
-        // create a FragmentTransaction to begin the transaction and replace the Fragment
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        // replace the FrameLayout with new Fragment
-        fragmentTransaction.replace(R.id.frameLayout, fragment, "AddTask");
-        fragmentTransaction.commit(); // save the changes
-        count++;
-
+    private void showTask(ArrayList<Task> tasks){
+        // Hiển thị danh sách task ra màn hình
+        rcvTask = (RecyclerView) findViewById(R.id.recycleViewTask);
+        taskAdapter = new TaskAdapter(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        rcvTask.setLayoutManager(linearLayoutManager);
+        taskAdapter.setData(tasks, UID, mDatabase);
+        rcvTask.setAdapter(taskAdapter);
     }
 
-    // Hàm ẩn bàn phím
-    private void hideKeyboard() {
-        View v = TaskActivity.this.getCurrentFocus();
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
-    }
-
-    // Hàm đóng fragment
-    private void closeFragment() {
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentByTag("AddTask");
-        if (fragment != null) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.remove(fragment);
-            fragmentTransaction.commit();
-            hideKeyboard();
-            fabAddTask.setVisibility(View.VISIBLE);
-        }
+    private void sortByDate(ArrayList<Task> tasks){
+        Collections.sort(tasks, new Comparator<Task>() {
+            public int compare(Task o1, Task o2) {
+                try {
+                    return o1.getDate().compareTo(o2.getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    return 0;
+                }
+            }
+        });
     }
 }

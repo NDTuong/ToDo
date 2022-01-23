@@ -27,7 +27,7 @@ public class MUtils extends AppCompatActivity {
     // flags = 1 - sử dụng format 2
     public static String convertCalendar2String(Calendar calendar, int flags){
         SimpleDateFormat format1 = new SimpleDateFormat("d/MM/yyyy");
-        SimpleDateFormat format2 = new SimpleDateFormat("d/MM/yyyy - hh:mm");
+        SimpleDateFormat format2 = new SimpleDateFormat("HH:mm - d/MM/yyyy");
         switch (flags){
             case 0:
                 String s1 = format1.format(calendar.getTime());
